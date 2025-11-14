@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galiz BA</title>
+    <link rel="stylesheet" href="galiz.css">
+</head>
+
+<body>
+    <!-- Pantalla de carga -->
+    <div class="loader">
+        <div class="logo-loader"></div>
+    </div>
+
+    <!-- Encabezado -->
+    <header id="navbar">
+        <div class="announcement-bar">
+            <div class="marquee-track">
+                <div class="announcement-item">
+                    3 y 6 cuotas sin interés | 9 cuotas desde $250.000 | Envíos gratis desde $200.000 | 10% OFF con
+                    transferencia
+                </div>
+            </div>
+        </div>
+
+        <div class="header-main">
+            <a href="galiz.html"><img src="galiz\IMAGENES WEB\Logo negro.png" alt="Logo de Galiz" class="logo-img"></a>
+            <nav class="nav-links">
+                <a href="ID0000.html">Novedades</a>
+                <a href="ID0001.html">Remeras</a>
+                <a href="ID0002.html">Buzos</a>
+            </nav>
+            <div class="user-options">
+                <a href="#"><i class="fas fa-user"></i></a>
+                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Accesorios -->
+        <section class="catalogo" id="accesorios">
+            <h2 class="fade-in">Novedades</h2>
+            <div class="producto-item fade-in">
+                <div class="producto-img">
+                    <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Remera 1" class="front">
+                    <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Remera 1 dorso" class="back">
+                </div>
+                <h3>Remera 1</h3>
+                <p>$25.000</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Galiz BA | <a href="#">Instagram</a> | <a href="#">Contacto</a></p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        // Loader
+        window.addEventListener("load", () => {
+            document.querySelector(".loader").style.display = "none";
+        });
+
+        // Navbar scroll
+        window.addEventListener("scroll", () => {
+            const header = document.getElementById("navbar");
+            if (window.scrollY > 80) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+
+        // Animaciones con scroll (fade-in)
+        const fadeElements = document.querySelectorAll(".fade-in");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        fadeElements.forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
