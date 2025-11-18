@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remera Classic | Galiz.BA</title>
+    <link rel="icon" type="image/png" href="galiz\IMAGENES WEB\icon galiz.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;900&family=Special+Elite&display=swap"
+        rel="stylesheet">
+    <style>
+        /*
+        ====================================================
+        ||          ESTILOS BASE DE GALIZ.BA          ||
+        ====================================================
+        */
+        body {
+            margin: 0;
+            font-family: "Roboto", Helvetica, sans-serif;
+            background-color: #fff;
+            color: #111;
+            overflow-x: hidden;
+        }
+
+        /* LOADER */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .logo-loader {
+            width: 120px;
+            height: 120px;
+            background: url('galiz/IMAGENES WEB/Logo negro.png') no-repeat center center/contain;
+            animation: fadeIn 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.3;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* SEPARADOR MAIN PARA EL HEADER FIJO */
+        main {
+            padding-top: 105px;
+        }
+
+        /* BARRA DE ANUNCIO */
+        .announcement-bar {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            z-index: 2000;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll 25s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* HEADER PRINCIPAL (Fijo y Transparente) */
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1500;
+            background: transparent;
+            box-shadow: none;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header:hover {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header:hover .menu-toggle,
+        header:hover .cart-icon {
+            color: #000;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 30px;
+            position: relative;
+        }
+
+        .menu-toggle,
+        .cart-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .logo-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo-center img {
+            width: 130px;
+            transition: 0.3s ease;
+        }
+
+        /* MENÚ LATERAL */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding-top: 70px;
+            transition: left 0.3s ease;
+            z-index: 2000;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .side-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        /* Overlay para cerrar al hacer clic afuera */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1900;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .side-menu.active~.overlay,
+        .cart-sidebar.active~.overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Contador en el Icono del Carrito */
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-counter {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #000;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 50%;
+            padding: 2px 5px;
+            min-width: 18px;
+            text-align: center;
+            line-height: 1.2;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* Animación al agregar un producto (escalado) */
+        .cart-icon.animate .cart-counter {
+            animation: pulseCart 0.5s ease-out;
+        }
+
+        @keyframes pulseCart {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+                background-color: #6c0000;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Carrito Lateral (Cart Sidebar) */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #111;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .cart-footer {
+            padding: 15px 20px;
+            border-top: 2px solid #000;
+            text-align: center;
+        }
+
+        .cart-footer p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            display: block;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #333;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            position: relative;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #111;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .cart-item-info span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 5px;
+        }
+
+        .remove-item-btn:hover {
+            color: #c00;
+        }
+
+
+        /*
+        ====================================================
+        ||           ESTILOS PÁGINA DE PRODUCTO          ||
+        ====================================================
+        */
+        .product-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            display: flex;
+            gap: 40px;
+        }
+
+        /* CLASE DE FUENTE APLICADA */
+        .font-typewriter {
+            font-family: 'Special Elite', cursive;
+            /* Usa la fuente de Google Fonts */
+            font-size: 2.5em;
+            /* Aumentar ligeramente para que se vea el efecto */
+            font-weight: 400;
+            /* Las fuentes de máquina de escribir suelen ser de peso regular */
+            text-transform: none;
+            /* Mantener la capitalización original si se desea */
+            letter-spacing: 1px;
+            /* Espaciado extra para el efecto */
+        }
+
+        /* --- GALERÍA DE IMÁGENES --- */
+        .gallery {
+            flex: 1;
+            display: flex;
+            gap: 15px;
+        }
+
+        .thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100px;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 120px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: border 0.2s;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #000;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-image {
+            flex-grow: 1;
+            max-width: 500px;
+        }
+
+        .main-image img {
+            width: 100%;
+            display: block;
+        }
+
+        /* --- DETALLES DEL PRODUCTO --- */
+        .details {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .product-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Estilo de rating adaptado al de la home */
+        .product-rating {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-rating i {
+            color: #000;
+            font-size: 0.75rem;
+            margin-right: 2px;
+        }
+
+        .product-rating span {
+            margin-left: 5px;
+        }
+
+        .price-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: #000;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #777;
+            font-size: 1.1em;
+            font-weight: 400;
+        }
+
+        .discount-badge {
+            background-color: #d9534f;
+            color: white;
+            padding: 5px 8px;
+            font-size: 0.9em;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        /* --- SELECTORES DE OPCIONES --- */
+        .option-group {
+            margin-bottom: 25px;
+        }
+
+        .option-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .size-selector button,
+        .color-selector button {
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 10px 15px;
+            margin-right: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .size-selector button.selected,
+        .color-selector button.selected {
+            border-color: #000;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Selector de Color (círculos) */
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            margin-right: 10px;
+            cursor: pointer;
+            display: inline-block;
+            transition: border-color 0.2s;
+        }
+
+        .color-option.selected {
+            border-color: #000;
+            outline: 2px solid #000;
+            outline-offset: 1px;
+        }
+
+        /* --- QUANTITY & BUTTONS --- */
+        .quantity-control {
+            display: flex;
+            width: 120px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .quantity-control button {
+            background: #eee;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .quantity-control input {
+            width: 40px;
+            text-align: center;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .btn-add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            border: 1px solid #000;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #333;
+        }
+
+        .btn-buy-now {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #000;
+            color: #000;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .btn-buy-now:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* --- ENVÍO --- */
+        .shipping-calc {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .shipping-calc label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .shipping-input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .shipping-input-group input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .shipping-input-group button {
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /*
+        ====================================================
+        ||                FOOTER DE GALIZ.BA              ||
+        ====================================================
+        */
+        footer {
+            background: #fff;
+            color: #000;
+            padding: 60px 20px 30px;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-title {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .footer-newsletter {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px 0;
+            font-size: 1rem;
+            color: #111;
+            background: transparent;
+            text-align: center;
+        }
+
+        .newsletter-form button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #111;
+            font-size: 1.2rem;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            transition: color 0.2s;
+            text-align: center;
+        }
+
+        .footer-col a:hover {
+            color: #000;
+        }
+
+        .footer-col .footer-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #000;
+            margin: 0;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #666;
+        }
+
+        /*
+        ====================================================
+        ||               MEDIA QUERIES (ADAPTADO)         ||
+        ====================================================
+        */
+        /* BASE TABLET/MOBILE GRANDE */
+        @media (max-width: 800px) {
+            .product-container {
+                flex-direction: column;
+                margin: 0;
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .gallery {
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+
+            .thumbnails {
+                /* Permitir scroll horizontal en miniaturas */
+                flex-direction: row;
+                justify-content: flex-start;
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .thumbnail {
+                width: 50px;
+                height: 60px;
+                flex-shrink: 0;
+            }
+
+            .details,
+            .main-image {
+                max-width: 100%;
+            }
+
+            .details {
+                padding: 0 10px;
+            }
+
+            .product-name {
+                font-size: 1.6em;
+                word-wrap: break-word;
+                /* Prevenir desbordamiento de texto largo */
+            }
+
+            .current-price {
+                font-size: 1.4em;
+            }
+
+            .header-main {
+                padding: 12px 15px;
+            }
+
+            .footer-grid {
+                flex-direction: column;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .footer-col {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .footer-col:last-child {
+                border-bottom: none;
+            }
+
+            .footer-col .footer-title {
+                text-align: center;
+            }
+
+            .footer-col a,
+            .footer-col p {
+                text-align: center;
+            }
+
+            .quantity-control {
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto 20px;
+            }
+
+            .shipping-input-group {
+                flex-direction: column;
+                /* Apilar CP y botón */
+            }
+
+            .shipping-input-group button {
+                width: 100%;
+            }
+
+            .btn-add-to-cart,
+            .btn-buy-now {
+                padding: 18px 15px;
+                /* Botones más grandes para tocar */
+                font-size: 0.95rem;
+            }
+
+            /* Ajuste del tamaño del sidebar para ocupar más espacio en móvil */
+            .side-menu {
+                width: 85%;
+                left: -85%;
+            }
+
+            .side-menu.active {
+                left: 0;
+            }
+
+            .cart-sidebar {
+                width: 90%;
+                right: -90%;
+            }
+
+            .cart-sidebar.active {
+                right: 0;
+            }
+        }
+
+        /* MOBILE PEQUEÑO (Ajustes finales) */
+        @media (max-width: 600px) {
+            .product-container {
+                padding: 10px;
+            }
+
+            .details {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="logo-loader"></div>
+    </div>
+
+    <header id="main-header">
+        <div class="announcement-bar">
+            <div class="marquee-content">
+                <p>
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                </p>
+            </div>
+        </div>
+
+        <div class="header-main">
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div class="logo-center">
+                <a href="galiz.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
+            </div>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-counter" class="cart-counter">0</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="side-menu" id="sideMenu">
+        <a href="ID0000.html">Novedades</a>
+        <a href="ID0001.html">Remeras</a>
+        <a href="ID0001.html">Buzos</a>
+        <a href="ID0001.html">Accesorios</a>
+        <a href="ID0001.html">Pantalones</a>
+        <a href="ID0001.html">Ventas al por Mayor</a>
+        <a href="ID0000.html">Contacto</a>
+    </div>
+
+    <div class="overlay" id="menuOverlay"></div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart-btn" id="closeCartBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-message" id="emptyMessage" style="display: block;">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <p>Total: $<span id="cartTotal">0.00</span></p>
+            <a href="#" class="checkout-btn">Finalizar Compra</a>
+        </div>
+    </div>
+
+    <main>
+        <div class="product-container">
+            <div class="gallery">
+                <div class="thumbnails">
+                    <div class="thumbnail active" data-image="galiz/IMAGENES WEB/REMES/Remera-Classic-Blanca-Frente.jpg"
+                        data-color="Blanco">
+                        <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                            alt="Remera vista frontal">
+                    </div>
+                    <div class="thumbnail" data-image="galiz/IMAGENES WEB/REMES/Remera-Classic-Blanca-Dorso.jpg"
+                        data-color="Blanco">
+                        <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
+                            alt="Remera vista dorso">
+                    </div>
+                    <div class="thumbnail" data-image="galiz/IMAGENES WEB/REMES/Remera-Classic-Negra-Frente.jpg"
+                        data-color="Negro">
+                        <img src="galiz\IMAGENES WEB\REMES\Gemini_Generated_Image_hmeexzhmeexzhmee.png"
+                            alt="Remera negra frente">
+                    </div>
+                    <div class="thumbnail" data-image="galiz/IMAGENES WEB/REMES/Remera-Classic-Blanca-Dorso.jpg"
+                        data-color="Blanco">
+                        <img src="galiz\IMAGENES WEB\REMES\Gemini_Generated_Image_hmeexzhmeexzhmee (1).png"
+                            alt="Remera negra vista dorso">
+                    </div>
+                </div>
+
+                <div class="main-image">
+                    <img id="product-main-image"
+                        src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                        alt="Remera Classic">
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="product-header">
+                    <h1 class="product-name font-typewriter">Remera ejemplo</h1>
+
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.5 (45)</span>
+                    </div>
+
+                    <div class="price-info">
+                        <span class="current-price">$12.500,00</span>
+                        <span class="original-price">$15.000,00</span>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="size-selector">Talle: <span id="selected-size">S</span></label>
+                    <div class="size-selector" id="size-selector">
+                        <button data-size="S" class="selected">S</button>
+                        <button data-size="M">M</button>
+                        <button data-size="L">L</button>
+                        <button data-size="XL">XL</button>
+                        <button data-size="XXL">XXL</button>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="color-selector">Color: <span id="selected-color">Blanco</span></label>
+                    <div class="color-selector" id="color-selector">
+                        <span class="color-option selected" data-color="Blanco"
+                            style="background-color: #f0f0f0; border-color: #000;" title="Blanco"></span>
+                        <span class="color-option" data-color="Negro" style="background-color: #333333;"
+                            title="Negro"></span>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="quantity">Cantidad</label>
+                    <div class="quantity-control">
+                        <button id="decrement-btn">-</button>
+                        <input type="text" id="quantity-input" value="1" min="1">
+                        <button id="increment-btn">+</button>
+                    </div>
+                </div>
+
+                <button class="btn-add-to-cart" data-product-id="CL001">AÑADIR AL CARRITO</button>
+                <button class="btn-buy-now">COMPRAR AHORA</button>
+
+                <div class="shipping-calc">
+                    <label>Calcula los tiempos de envío.</label>
+                    <div class="shipping-input-group">
+                        <input type="text" id="cpInput" placeholder="Código postal (Ej: 1832)" maxlength="5"
+                            pattern="\d*">
+                        <button id="calcShippingBtn">Calcular</button>
+                    </div>
+
+                    <div id="shippingResult" style="margin-top: 15px; font-size: 0.95em; min-height: 40px;">
+                        <p style="font-size: 0.85em; color: #555; margin: 0;">
+                            Envío en 24-48hs en CABA y GBA. Devolución gratuita en 30 días.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-newsletter">
+            <h4 class="footer-title">SUSCRIBITE AL NEWSLETTER</h4>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Ingresá tu mail" required>
+                <button type="submit"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 class="footer-title">AYUDA</h4>
+                <a href="#">PREGUNTAS FRECUENTES</a>
+                <a href="#">CAMBIOS Y DEVOLUCIONES</a>
+                <a href="#">ENVÍOS</a>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">GALIZ</h4>
+                <a href="#">STORES</a>
+                <a href="#">TÉRMINOS Y CONDICIONES</a>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">CONTACTO</h4>
+                <p>+54 9 11 2222 3333</p>
+                <p>ARGENTINA</p>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.75rem; color: #666;">
+            © 2025 Galiz.ba — Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- CONSTANTES DEL HEADER Y NAV BAR ---
+            const menuToggle = document.getElementById('menuToggle');
+            const sideMenu = document.getElementById('sideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const cartIcon = document.getElementById('cartIcon');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const closeCartBtn = document.getElementById('closeCartBtn');
+
+            // --- CONSTANTES DE PRODUCTO ---
+            const sizeButtons = document.querySelectorAll('.size-selector button');
+            const colorOptions = document.querySelectorAll('.color-option');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.getElementById('product-main-image');
+            const selectedSizeSpan = document.getElementById('selected-size');
+            const selectedColorSpan = document.getElementById('selected-color');
+            const quantityInput = document.getElementById('quantity-input');
+            const incrementBtn = document.getElementById('increment-btn');
+            const decrementBtn = document.getElementById('decrement-btn');
+            const addToCartBtn = document.querySelector('.btn-add-to-cart');
+
+            // --- CONSTANTES DE ENVÍO ---
+            const cpInput = document.getElementById('cpInput');
+            const calcShippingBtn = document.getElementById('calcShippingBtn');
+            const shippingResult = document.getElementById('shippingResult');
+
+            // --- CONSTANTES DEL CARRITO ---
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartTotalSpan = document.getElementById('cartTotal');
+            const cartCounterSpan = document.getElementById('cart-counter');
+            const emptyMessage = document.getElementById('emptyMessage');
+
+            // Almacenamiento local del carrito
+            let cart = [];
+            // Obtener el precio actual de la remera
+            let currentPriceText = document.querySelector('.current-price').textContent.replace('$', '').replace(/\./g, '');
+            let currentPrice = parseFloat(currentPriceText);
+
+
+            // ===============================================
+            // ||             1. FUNCIONES BASE               ||
+            // ===============================================
+
+            // Abrir y cerrar Menú
+            function closeAllSidebars() {
+                sideMenu.classList.remove('active');
+                cartSidebar.classList.remove('active');
+                menuOverlay.style.opacity = '0';
+                menuOverlay.style.visibility = 'hidden';
+            }
+
+            menuToggle.addEventListener('click', () => {
+                if (cartSidebar.classList.contains('active')) cartSidebar.classList.remove('active');
+                sideMenu.classList.add('active');
+                menuOverlay.style.opacity = '1';
+                menuOverlay.style.visibility = 'visible';
+            });
+
+            // Abrir y cerrar Carrito
+            cartIcon.addEventListener('click', () => {
+                if (sideMenu.classList.contains('active')) sideMenu.classList.remove('active');
+                cartSidebar.classList.add('active');
+                menuOverlay.style.opacity = '1';
+                menuOverlay.style.visibility = 'visible';
+            });
+
+            closeCartBtn.addEventListener('click', closeAllSidebars);
+            menuOverlay.addEventListener('click', closeAllSidebars);
+
+            // Ocultar Loader
+            setTimeout(function () {
+                const loader = document.querySelector('.loader');
+                if (loader) {
+                    loader.style.display = 'none';
+                }
+            }, 300);
+
+
+            // ===============================================
+            // ||          2. LÓGICA DE PRODUCTO              ||
+            // ===============================================
+
+            // 2.1. Selección de Talle
+            sizeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    sizeButtons.forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    selectedSizeSpan.textContent = button.dataset.size;
+                });
+            });
+
+            // 2.2. Selección de Color y Cambio de Imagen
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    const newColor = option.dataset.color;
+                    selectedColorSpan.textContent = newColor;
+
+                    const newThumb = document.querySelector(`.thumbnail[data-color="${newColor}"]`);
+                    if (newThumb) {
+                        mainImage.src = newThumb.querySelector('img').src;
+                        thumbnails.forEach(t => t.classList.remove('active'));
+                        newThumb.classList.add('active');
+                    }
+                });
+            });
+
+            // 2.3. Cambio de Imagen por Miniatura
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    const newImageSrc = thumbnail.querySelector('img').src;
+                    mainImage.src = newImageSrc;
+
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    thumbnail.classList.add('active');
+
+                    const thumbColor = thumbnail.dataset.color;
+                    const correspondingColorOption = document.querySelector(`.color-option[data-color="${thumbColor}"]`);
+                    if (correspondingColorOption) {
+                        colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        correspondingColorOption.classList.add('selected');
+                        selectedColorSpan.textContent = thumbColor;
+                    }
+                });
+            });
+
+            // 2.4. Control de Cantidad
+            incrementBtn.addEventListener('click', () => {
+                let current = parseInt(quantityInput.value);
+                quantityInput.value = current + 1;
+            });
+
+            decrementBtn.addEventListener('click', () => {
+                let current = parseInt(quantityInput.value);
+                if (current > 1) {
+                    quantityInput.value = current - 1;
+                }
+            });
+
+
+            // ===============================================
+            // ||      3. FUNCIÓN DE CÁLCULO DE ENVÍO         ||
+            // ===============================================
+
+            const calculateShipping = () => {
+                const cp = cpInput.value.trim();
+                const prices = {
+                    'CABA': { time: '24 a 48hs', cost: '$1.500', minCp: 1000, maxCp: 1499 },
+                    'GBA': { time: '2 a 3 días hábiles', cost: '$1.800', minCp: 1500, maxCp: 1899 },
+                    'Interior': { time: '4 a 8 días hábiles', cost: '$3.500', minCp: 2000, maxCp: 9999 }
+                };
+
+                shippingResult.innerHTML = '';
+
+                if (cp.length < 4 || isNaN(cp)) {
+                    shippingResult.innerHTML = `<p style="color: #d9534f; font-weight: 600;">⚠️ Ingresa un código postal válido.</p>`;
+                    return;
+                }
+
+                const cpNumber = parseInt(cp);
+                let zone = null;
+                let resultHTML = '';
+
+                if (cpNumber >= prices['CABA'].minCp && cpNumber <= prices['CABA'].maxCp) {
+                    zone = prices['CABA'];
+                } else if (cpNumber >= prices['GBA'].minCp && cpNumber <= prices['GBA'].maxCp) {
+                    zone = prices['GBA'];
+                } else if (cpNumber >= prices['Interior'].minCp) {
+                    zone = prices['Interior'];
+                }
+
+                if (zone) {
+                    resultHTML = `
+                        <p style="color: #38761d; font-weight: 700; margin-bottom: 5px;">
+                            🚚 Envío Estándar: ${zone.cost}
+                        </p>
+                        <p style="color: #111; font-weight: 500;">
+                            Recibís en: ${zone.time}
+                        </p>
+                    `;
+                } else {
+                    resultHTML = `<p style="color: #666;">No encontramos resultados para ese CP.</p>`;
+                }
+
+                shippingResult.innerHTML = resultHTML;
+            };
+
+            calcShippingBtn.addEventListener('click', calculateShipping);
+
+
+            // ===============================================
+            // ||         4. LÓGICA DEL CARRITO               ||
+            // ===============================================
+
+            // Formatear precio con separador de miles y decimales
+            const formatPrice = (price) => {
+                return price.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            // Función auxiliar para parsear el precio (Ej. "$10.000,00" a 10000)
+            function parsePrice(priceText) {
+                if (!priceText) return 0;
+                return parseFloat(priceText.replace('$', '').replace(/\./g, '').replace(',', '.'));
+            }
+
+
+            // 4.1. Renderizar el carrito en la barra lateral
+            const renderCart = () => {
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                let itemCount = 0;
+
+                if (cart.length === 0) {
+                    emptyMessage.style.display = 'block';
+                } else {
+                    emptyMessage.style.display = 'none';
+
+                    cart.forEach((item, index) => {
+                        const itemTotal = item.price * item.quantity;
+                        total += itemTotal;
+                        itemCount += item.quantity;
+
+                        const itemHTML = `
+                            <div class="cart-item" data-index="${index}">
+                                <div class="cart-item-img">
+                                    <img src="${item.imageSrc}" alt="${item.name}">
+                                </div>
+                                <div class="cart-item-info">
+                                    <p>${item.name}</p>
+                                    <span>Talle: ${item.size} | Color: ${item.color}</span>
+                                    <span>${item.quantity} x $${formatPrice(item.price)} = $${formatPrice(itemTotal)}</span>
+                                </div>
+                                <button class="remove-item-btn" data-index="${index}">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        `;
+                        cartItemsContainer.innerHTML += itemHTML;
+                    });
+                }
+
+                // Actualizar total y contador
+                cartTotalSpan.textContent = formatPrice(total);
+                cartCounterSpan.textContent = itemCount;
+
+                document.querySelectorAll('.remove-item-btn').forEach(button => {
+                    button.addEventListener('click', removeItem);
+                });
+            };
+
+            // 4.2. Función para eliminar un ítem del carrito
+            const removeItem = (e) => {
+                const index = parseInt(e.currentTarget.dataset.index);
+                cart.splice(index, 1);
+                renderCart();
+            };
+
+            // 4.3. Agregar producto desde la página de detalle
+            addToCartBtn.addEventListener('click', () => {
+                const size = selectedSizeSpan.textContent;
+                const color = selectedColorSpan.textContent;
+                const quantity = parseInt(quantityInput.value);
+                const name = document.querySelector('.product-name').textContent;
+                const price = currentPrice;
+                const imageSrc = mainImage.src;
+
+                const newItem = {
+                    name,
+                    size,
+                    color,
+                    quantity,
+                    price,
+                    imageSrc
+                };
+
+                const existingItemIndex = cart.findIndex(item =>
+                    item.name === newItem.name &&
+                    item.size === newItem.size &&
+                    item.color === newItem.color
+                );
+
+                if (existingItemIndex > -1) {
+                    cart[existingItemIndex].quantity += newItem.quantity;
+                } else {
+                    cart.push(newItem);
+                }
+
+                // Animación y visualización
+                cartIcon.classList.add('animate');
+                setTimeout(() => cartIcon.classList.remove('animate'), 500);
+
+                renderCart();
+                cartSidebar.classList.add('active');
+                menuOverlay.style.opacity = '1';
+                menuOverlay.style.visibility = 'visible';
+
+                quantityInput.value = 1;
+            });
+
+            // Carga inicial
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galiz.BA</title>
+  <title>Inicio | Galiz.BA</title>
   <link rel="icon" type="image/png" href="galiz\IMAGENES WEB\icon galiz.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;900&family=Special+Elite&display=swap"
@@ -12,7 +12,7 @@
   <style>
     /*
         ====================================================
-        ||          ESTILOS GENERALES Y LAYOUT          ||
+        ||          ESTILOS GENERALES Y LAYOUT          ||
         ====================================================
         */
     body {
@@ -62,7 +62,7 @@
 
     /*
         ====================================================
-        ||          HEADER Y NAVEGACIÓN                   ||
+        ||          HEADER Y NAVEGACIÓN                   ||
         ====================================================
         */
 
@@ -202,7 +202,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DEL CARRITO LATERAL           ||
+        ||          ESTILOS DEL CARRITO LATERAL           ||
         ====================================================
         */
 
@@ -333,7 +333,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
+        ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
         ====================================================
         */
 
@@ -401,7 +401,7 @@
 
     /*
         ====================================================
-        ||           SECCIONES DE CONTENIDO               ||
+        ||           SECCIONES DE CONTENIDO               ||
         ====================================================
         */
 
@@ -581,12 +581,31 @@
       gap: 50px 30px;
     }
 
+    /* Estilo de la tarjeta de producto para que el enlace la cubra */
     .producto-item {
       background: #fff;
       box-shadow: none;
       transition: box-shadow 0.3s ease;
+      position: relative;
       overflow: visible;
+      display: flex;
+      /* Añadido para mejor control de layout */
+      flex-direction: column;
+      /* Añadido para mejor control de layout */
+      justify-content: space-between;
+      /* Añadido para mejor control de layout */
     }
+
+    /* Enlace que cubre la mayor parte de la tarjeta */
+    .product-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      flex-grow: 1;
+      padding-bottom: 50px;
+      /* Espacio para el botón de carrito */
+    }
+
 
     .producto-item:hover {
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -595,7 +614,8 @@
     .producto-img {
       position: relative;
       overflow: hidden;
-      margin-bottom: 50px;
+      margin-bottom: 0;
+      /* Ajustado */
     }
 
     .producto-img img {
@@ -621,7 +641,7 @@
 
     /*
         ====================================================
-        ||          TARJETA DE PRODUCTO DETALLADA       ||
+        ||          TARJETA DE PRODUCTO DETALLADA       ||
         ====================================================
         */
 
@@ -719,7 +739,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DEL BOTÓN AGREGAR CARRITO     ||
+        ||          ESTILOS DEL BOTÓN AGREGAR CARRITO     ||
         ====================================================
         */
 
@@ -753,7 +773,7 @@
 
     /*
         ====================================================
-        ||                FOOTER (EXISTENTE)              ||
+        ||                FOOTER (CENTRALIZADO)            ||
         ====================================================
         */
     footer {
@@ -767,11 +787,20 @@
       align-items: center;
     }
 
-    /*
-        ====================================================
-        ||        NUEVOS ESTILOS PARA EL FOOTER           ||
-        ====================================================
-        */
+    /* --- Estilos del Newsletter --- */
+    .footer-newsletter {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    /* Logo en el Footer (opcional, si se agrega) */
+    .footer-logo {
+      width: 150px;
+      margin-bottom: 25px;
+    }
+
     .footer-title {
       font-size: 0.9rem;
       font-weight: 900;
@@ -779,14 +808,6 @@
       letter-spacing: 1px;
       margin-bottom: 25px;
       color: #111;
-    }
-
-    /* --- Estilos del Newsletter --- */
-    .footer-newsletter {
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 60px;
-      text-align: center;
     }
 
     .newsletter-form {
@@ -836,7 +857,8 @@
     .footer-col {
       flex: 1;
       padding: 0 20px;
-      text-align: left;
+      /* ALINEACIÓN CENTRAL PARA DESKTOP */
+      text-align: center;
     }
 
     .footer-col a,
@@ -849,6 +871,8 @@
       margin-bottom: 10px;
       line-height: 1.5;
       transition: color 0.2s;
+      /* ALINEACIÓN CENTRAL PARA ENLACES/PÁRRAFOS */
+      text-align: center;
     }
 
     .footer-col a:hover {
@@ -856,7 +880,8 @@
     }
 
     .footer-col .footer-title {
-      text-align: left;
+      /* ALINEACIÓN CENTRAL PARA TÍTULOS */
+      text-align: center;
       margin-bottom: 15px;
       font-size: 0.9rem;
     }
@@ -884,9 +909,15 @@
       color: #666;
     }
 
+    .wip {
+      font-size: 0.75rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
     /*
         ====================================================
-        ||               MEDIA QUERIES (ADAPTADO)         ||
+        ||               MEDIA QUERIES (ADAPTADO)         ||
         ====================================================
         */
     @media (max-width: 1200px) {
@@ -915,6 +946,7 @@
       }
     }
 
+    /* MOBILE GRANDE/TABLET PEQUEÑA */
     @media (max-width: 768px) {
       .footer-grid {
         flex-direction: column;
@@ -939,21 +971,58 @@
       .footer-col a,
       .footer-col p {
         text-align: center;
+        /* Asegura el centrado en móvil */
       }
 
       .footer-newsletter {
         margin-bottom: 40px;
       }
+
+      /* -- AJUSTES DE CONTENIDO PRINCIPAL -- */
+
+      .catalogo,
+      .categories-grid,
+      .extra-section {
+        padding: 40px 15px;
+        /* Reducir padding horizontal */
+      }
+
+      .productos-grid {
+        grid-template-columns: 1fr 1fr;
+        /* Volver a dos columnas en tablet */
+        gap: 30px 15px;
+      }
+
+      .values-grid {
+        flex-direction: column;
+        /* Apilar valores */
+      }
+
+      /* Ajuste del tamaño del sidebar para ocupar más espacio en móvil */
+      .side-menu {
+        width: 85%;
+        left: -85%;
+      }
+
+      .cart-sidebar {
+        width: 90%;
+        right: -90%;
+      }
     }
 
+    /* MOBILE PEQUEÑO */
     @media (max-width: 600px) {
       .productos-grid {
         grid-template-columns: 1fr;
+        /* Una sola columna en móvil */
+        gap: 50px 0;
       }
 
       .catalogo,
-      .categories-grid {
-        padding: 40px 20px;
+      .categories-grid,
+      .extra-section {
+        padding: 40px 10px;
+        /* Reducir aún más el padding */
       }
 
       .catalogo h2 {
@@ -964,7 +1033,7 @@
         padding: 12px 15px;
       }
 
-      /* Hacemos que el botón esté siempre visible en móvil */
+      /* Hacemos que el botón esté siempre visible en móvil (ya estaba en tu código) */
       .producto-img {
         margin-bottom: 0;
       }
@@ -977,7 +1046,15 @@
       }
 
       .cart-sidebar {
-        width: 90%;
+        width: 100%;
+        /* El carrito ocupa todo el ancho */
+        right: -100%;
+      }
+
+      .side-menu {
+        width: 100%;
+        /* El menú ocupa todo el ancho */
+        left: -100%;
       }
     }
   </style>
@@ -1004,7 +1081,7 @@
     <div class="header-main">
       <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
       <div class="logo-center">
-        <a href="index.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
+        <a href="galiz.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
       </div>
       <div class="cart-icon" id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
@@ -1086,149 +1163,153 @@
       <div class="productos-grid">
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
-              alt="Cap Good Things Corduroy frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
-              alt="Cap Good Things Corduroy dorso" class="back">
+          <a href="IDREME1.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                alt="Cap Good Things Corduroy frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
+                alt="Cap Good Things Corduroy dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>REMERA CRUZ PLEASURE RAW</h3>
 
-            <button class="add-to-cart-btn" data-product-name="REMERA CRUZ PLEASURE RAW">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>REMERA CRUZ PLEASURE RAW</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <span>5.0 (2)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>5.0 (2)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-old">$17.500,00</p>
+                  <p class="price-new">$6.250,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-old">$17.500,00</p>
-                <p class="price-new">$6.250,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$12.312,50 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $4.375,00</p>
+                <p class="available-colors">Disponible en 2 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$12.312,50 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $4.375,00</p>
-              <p class="available-colors">Disponible en 2 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="REMERA CRUZ PLEASURE RAW">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
-              alt="Cap Good Things Corduroy frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
-              alt="Cap Good Things Corduroy dorso" class="back">
+          <a href="IDREME1.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                alt="Cap Good Things Corduroy frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
+                alt="Cap Good Things Corduroy dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Process Grey</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Process Grey">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Process Grey</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <span>4.8 (12)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>4.8 (12)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$10.000,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$10.000,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$7.000,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $15.000,00</p>
+                <p class="available-colors">Disponible en 3 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$7.000,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $15.000,00</p>
-              <p class="available-colors">Disponible en 3 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Process Grey">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
-              alt="Cap Good Things Corduroy frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
-              alt="Cap Good Things Corduroy dorso" class="back">
+          <a href="IDREME1.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                alt="Cap Good Things Corduroy frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
+                alt="Cap Good Things Corduroy dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Greenville Lavander</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Greenville Lavander">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Greenville Lavander</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <span>4.0 (5)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span>4.0 (5)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$13.750,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$13.750,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$7.375,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $10.625,00</p>
+                <p class="available-colors">Disponible en 1 color</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$7.375,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $10.625,00</p>
-              <p class="available-colors">Disponible en 1 color</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Greenville Lavander">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
-              alt="Cap Good Things Corduroy frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
-              alt="Cap Good Things Corduroy dorso" class="back">
+          <a href="IDREME1.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frdf-2d6df4866a7f85771e17357605526945-640-0.png"
+                alt="Cap Good Things Corduroy frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\mockup-pag-frontal-331b17df8578d0a52a17357605534886-640-0.png"
+                alt="Cap Good Things Corduroy dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Things Corduroy</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Things Corduroy">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Things Corduroy</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <span>4.5 (8)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <span>4.5 (8)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-old">$19.500,00</p>
+                  <p class="price-new">$16.250,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-old">$19.500,00</p>
-                <p class="price-new">$16.250,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$12.625,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $11.041,67</p>
+                <p class="available-colors">Disponible en 2 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$12.625,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $11.041,67</p>
-              <p class="available-colors">Disponible en 2 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Things Corduroy">
+            Agregar al Carrito
+          </button>
         </div>
       </div>
     </section>
@@ -1256,150 +1337,152 @@
       <div class="productos-grid">
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Remera Harvester frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Remera Harvester dorso" class="back">
+          <a href="IDREME2.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Remera Harvester frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Remera Harvester dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Harvester</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Harvester">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Harvester</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <span>5.0 (25)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>5.0 (25)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$22.000,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$22.000,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$20.800,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $5.333,33</p>
+                <p class="available-colors">Disponible en 4 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$20.800,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $5.333,33</p>
-              <p class="available-colors">Disponible en 4 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Harvester">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Maena Bracelet frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Maena Bracelet dorso" class="back">
+          <a href="IDREME2.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Maena Bracelet frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Maena Bracelet dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Bracelet</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Bracelet">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Bracelet</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-                <i class="far fa-star"></i>
-                <span>3.5 (1)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+                  <i class="far fa-star"></i>
+                  <span>3.5 (1)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$21.750,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$21.750,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$19.575,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $3.625,00</p>
+                <p class="available-colors">Disponible en 1 color</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$19.575,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $3.625,00</p>
-              <p class="available-colors">Disponible en 1 color</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Bracelet">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Boxer Lavander Black frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Boxer Lavander Black dorso" class="back">
+          <a href="IDREME2.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Boxer Lavander Black frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Boxer Lavander Black dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Lavander Black</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Lavander Black">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Lavander Black</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <span>5.0 (3)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <span>5.0 (3)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$18.000,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$18.000,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$16.200,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $3.000,00</p>
+                <p class="available-colors">Disponible en 2 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$16.200,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $3.000,00</p>
-              <p class="available-colors">Disponible en 2 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Lavander Black">
+            Agregar al Carrito
+          </button>
         </div>
 
         <div class="producto-item">
-          <div class="producto-img">
-            <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Hetfield Chain frente" class="front">
-            <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Hetfield Chain dorso" class="back">
+          <a href="IDREME2.html" class="product-link">
+            <div class="producto-img">
+              <img src="galiz\IMAGENES WEB\REMES\get out 1.png" alt="Hetfield Chain frente" class="front">
+              <img src="galiz\IMAGENES WEB\REMES\get out 2.png" alt="Hetfield Chain dorso" class="back">
+            </div>
+            <div class="producto-info">
+              <h3>Remera Chain</h3>
 
-            <button class="add-to-cart-btn" data-product-name="Remera Chain">
-              Agregar al Carrito
-            </button>
-          </div>
-          <div class="producto-info">
-            <h3>Remera Chain</h3>
-
-            <div class="product-pricing">
-              <div class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <span>4.0 (9)</span>
+              <div class="product-pricing">
+                <div class="rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <span>4.0 (9)</span>
+                </div>
+                <div class="prices">
+                  <p class="price-new">$17.500,00</p>
+                </div>
               </div>
-              <div class="prices">
-                <p class="price-new">$17.500,00</p>
+
+              <div class="payment-options">
+                <p class="transfer-price">$12.625,00 con Transferencia o depósito</p>
+                <p class="installments">6 cuotas sin interés de $11.041,67</p>
+                <p class="available-colors">Disponible en 2 colores</p>
               </div>
             </div>
-
-            <div class="payment-options">
-              <p class="transfer-price">$12.625,00 con Transferencia o depósito</p>
-              <p class="installments">6 cuotas sin interés de $11.041,67</p>
-              <p class="available-colors">Disponible en 2 colores</p>
-            </div>
-          </div>
+          </a>
+          <button class="add-to-cart-btn" data-product-name="Remera Chain">
+            Agregar al Carrito
+          </button>
         </div>
       </div>
     </section>
 
-    <hr>
-
     <footer>
       <div class="footer-newsletter">
-        <h3 class="footer-title">SUSCRIBITE AL NEWSLETTER</h3>
+        <h4 class="footer-title">SUSCRIBITE AL NEWSLETTER</h4>
         <form action="#" method="post" class="newsletter-form">
-          <input type="email" name="email" placeholder="Email" required>
+          <input type="email" name="email" placeholder="Ingresá tu mail" required>
           <button type="submit" aria-label="Suscribirse"><i class="fas fa-arrow-right"></i></button>
         </form>
       </div>
@@ -1423,14 +1506,16 @@
         </div>
       </div>
 
-      <p>© 2025 Galiz.ba — Todos los derechos reservados.</p>
-      <p class="wip">WIP – Work In Progress</p>
-
       <div class="social-icons">
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
+
+      <p style="margin-top: 30px; font-size: 0.75rem; color: #666;">
+        © 2025 Galiz.ba — Todos los derechos reservados.
+      </p>
+      <p class="wip">WIP – Work In Progress</p>
     </footer>
 
   </main>
@@ -1447,7 +1532,6 @@
 
     // NUEVAS VARIABLES GLOBALES PARA EL CARRITO
     let cart = []; // Array para almacenar los objetos de producto en el carrito
-    let itemCount = 0;
     const cartCounter = document.getElementById('cart-counter');
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalDisplay = document.getElementById('cartTotal');
@@ -1463,7 +1547,7 @@
       setTimeout(() => {
         loader.style.display = 'none';
         document.body.style.overflow = 'auto'; // Permitir scroll después de cargar
-      }, 1000); // 1 segundo de simulación
+      }, 500); // 0.5 segundo de simulación
     });
 
     // ----------------------------------------------------
@@ -1519,8 +1603,15 @@
     function parsePrice(priceText) {
       if (!priceText) return 0;
       // Elimina el símbolo de dólar, el punto de mil y reemplaza la coma decimal por un punto
-      return parseFloat(priceText.replace('$', '').replace('.', '').replace(',', '.'));
+      return parseFloat(priceText.replace('$', '').replace(/\./g, '').replace(',', '.'));
     }
+
+    // Función para formatear el precio a la vista (X.XXX,XX)
+    function formatPrice(price) {
+      // Convierte a string con dos decimales y usa una expresión regular para añadir el punto de miles.
+      return price.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
 
     // 1. Renderiza el contenido del carrito en el sidebar
     function renderCart() {
@@ -1535,23 +1626,20 @@
           const itemTotal = item.price * item.quantity;
           total += itemTotal;
 
-          // Formatear el precio para mostrar con comas como decimal y punto de mil (opcional, simplificado aquí)
-          const formattedPrice = item.price.toFixed(2).replace('.', ',');
-
           const itemHTML = `
-                        <div class="cart-item" data-index="${index}">
-                            <div class="cart-item-img">
-                                <img src="${item.imageSrc}" alt="${item.name}">
-                            </div>
-                            <div class="cart-item-info">
-                                <p>${item.name}</p>
-                                <span>$${formattedPrice} x ${item.quantity}</span>
-                            </div>
-                            <button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    `;
+                                    <div class="cart-item" data-index="${index}">
+                                        <div class="cart-item-img">
+                                            <img src="${item.imageSrc}" alt="${item.name}">
+                                        </div>
+                                        <div class="cart-item-info">
+                                            <p>${item.name}</p>
+                                            <span>$${formatPrice(item.price)} x ${item.quantity}</span>
+                                        </div>
+                                        <button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                `;
           cartItemsContainer.innerHTML += itemHTML;
         });
 
@@ -1561,17 +1649,16 @@
         });
       }
 
-      // Actualizar el contador global y el total (formateado para mostrar)
-      itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      // Actualizar el contador global y el total
+      const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
       cartCounter.textContent = itemCount;
 
-      // Formatear el total para mostrar en el carrito
-      const formattedTotal = total.toFixed(2).replace('.', ',');
-      cartTotalDisplay.textContent = formattedTotal;
+      cartTotalDisplay.textContent = formatPrice(total);
     }
 
     // 2. Agrega un producto al carrito
     function addToCart(product) {
+      // Intenta encontrar un ítem que coincida por ID
       const existingItem = cart.find(item => item.id === product.id);
 
       if (existingItem) {
@@ -1579,7 +1666,7 @@
       } else {
         cart.push({
           ...product,
-          quantity: 1
+          quantity: 1 // Siempre agregamos 1 unidad por defecto desde la grilla
         });
       }
 
@@ -1603,7 +1690,8 @@
     // ----------------------------------------------------
     addToCartButtons.forEach(button => {
       button.addEventListener('click', function (event) {
-        event.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation(); // ¡CLAVE! Previene que el clic vaya al enlace principal <a>
 
         // Obtener info del producto desde la tarjeta
         const itemElement = this.closest('.producto-item');
@@ -1646,7 +1734,7 @@
     // 6. Funcionalidad del Botón Finalizar Compra
     // ----------------------------------------------------
     checkoutBtn.addEventListener('click', function (event) {
-      event.preventDefault(); // Evita que el enlace recargue la página
+      event.preventDefault();
 
       if (cart.length === 0) {
         alert("¡Tu carrito está vacío! Agrega productos antes de finalizar la compra.");
@@ -1667,7 +1755,4 @@
   </script>
 </body>
 
-
 </html>
-
-
