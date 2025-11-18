@@ -1,155 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
+<title>Buzos | Galiz.BA</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galiz BA</title>
-    <link rel="stylesheet" href="galiz.css">
-</head>
-
-<body>
-    <!-- Pantalla de carga -->
-    <div class="loader">
-        <div class="logo-loader"></div>
-    </div>
-
-    <!-- Encabezado -->
-    <header id="navbar">
-        <div class="announcement-bar">
-            <div class="marquee-track">
-                <div class="announcement-item">
-                    3 y 6 cuotas sin interés | 9 cuotas desde $250.000 | Envíos gratis desde $200.000 | 10% OFF con
-                    transferencia
-                </div>
-            </div>
+<main>
+    <section class="catalogo">
+        <h2>Buzos</h2>
+        <div class="catalogo-header">
         </div>
 
-        <div class="header-main">
-            <a href="galiz.html"><img src="galiz\IMAGENES WEB\Logo negro.png" alt="Logo de Galiz" class="logo-img"></a>
-            <nav class="nav-links">
-                <a href="ID0000.html">Novedades</a>
-                <a href="ID0001.html">Remeras</a>
-                <a href="ID0002.html">Buzos</a>
-            </nav>
-            <div class="user-options">
-                <a href="#"><i class="fas fa-user"></i></a>
-                <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <div class="productos-grid" id="productosGrid">
+            <div class="producto-item">
+                <a href="detalle-producto.html" class="product-link">
+                    <div class="producto-img">
+                        <img class="front" src="galiz/IMAGENES WEB/buzo_hoodie_gris_frente.jpg"
+                            alt="Buzo con Capucha Gris - Frente">
+                        <img class="back" src="galiz/IMAGENES WEB/buzo_hoodie_gris_espalda.jpg"
+                            alt="Buzo con Capucha Gris - Espalda">
+                    </div>
+                    <div class="producto-info">
+                        <h3>BUZO CON CAPUCHA GRIS</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (12)</span>
+                        </div>
+                        <div class="prices">
+                            <p class="price-new">$69.990</p>
+                        </div>
+                        <div class="payment-options">
+                            <p class="transfer-price">O $59.491 CON TRANSFERENCIA</p>
+                            <span class="installments">6 cuotas sin interés de $11.665</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="add-to-cart-btn" data-product-name="Buzo con Capucha Gris">AGREGAR AL CARRITO</button>
+            </div>
+
+            <div class="producto-item">
+                <a href="detalle-producto.html" class="product-link">
+                    <div class="producto-img">
+                        <img class="front" src="galiz/IMAGENES WEB/buzo_crewneck_negro_frente.jpg"
+                            alt="Buzo Cuello Redondo Negro - Frente">
+                        <img class="back" src="galiz/IMAGENES WEB/buzo_crewneck_negro_espalda.jpg"
+                            alt="Buzo Cuello Redondo Negro - Espalda">
+                    </div>
+                    <div class="producto-info">
+                        <h3>BUZO CUELLO REDONDO</h3>
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="far fa-star"></i>
+                            <span>4.0 (5)</span>
+                        </div>
+                        <div class="prices">
+                            <p class="price-old">$65.000</p>
+                            <p class="price-new">$58.500</p>
+                        </div>
+                        <div class="payment-options">
+                            <p class="transfer-price">O $49.725 CON TRANSFERENCIA</p>
+                            <span class="installments">6 cuotas sin interés de $9.750</span>
+                        </div>
+                    </div>
+                </a>
+                <button class="add-to-cart-btn" data-product-name="Buzo Cuello Redondo">AGREGAR AL CARRITO</button>
             </div>
         </div>
-    </header>
-
-    <main>
-        <!-- Novedades -->
-        <section class="catalogo" id="novedades">
-            <h2 class="fade-in">Novedades</h2>
-            <div class="productos-grid">
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 1.png" alt="Nuevo 1">
-                    <h3>Nuevo 1</h3>
-                    <p>$25.000</p>
-                </div>
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 2.png" alt="Nuevo 2">
-                    <h3>Nuevo 2</h3>
-                    <p>$30.000</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Remeras -->
-        <section class="catalogo" id="remeras">
-            <h2 class="fade-in">Remeras</h2>
-            <div class="productos-grid">
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 1.png" alt="Remera 1">
-                    <h3>Remera 1</h3>
-                    <p>$25.000</p>
-                </div>
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 2.png" alt="Remera 2">
-                    <h3>Remera 2</h3>
-                    <p>$40.000</p>
-                </div>
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 1.png" alt="Remera 3">
-                    <h3>Remera 3</h3>
-                    <p>$35.000</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Buzos -->
-        <section class="catalogo" id="buzos">
-            <h2 class="fade-in">Buzos</h2>
-            <div class="productos-grid">
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 1.png" alt="Buzo 1">
-                    <h3>Buzo 1</h3>
-                    <p>$60.000</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pantalones -->
-        <section class="catalogo" id="pantalones">
-            <h2 class="fade-in">Pantalones</h2>
-            <div class="productos-grid">
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 2.png" alt="Pantalón 1">
-                    <h3>Pantalón 1</h3>
-                    <p>$50.000</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Accesorios -->
-        <section class="catalogo" id="accesorios">
-            <h2 class="fade-in">Accesorios</h2>
-            <div class="productos-grid">
-                <div class="producto-item fade-in">
-                    <img src="img/REMES/get out 1.png" alt="Gorra 1">
-                    <h3>Gorra 1</h3>
-                    <p>$15.000</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Galiz BA | <a href="#">Instagram</a> | <a href="#">Contacto</a></p>
-    </footer>
-
-    <!-- JS -->
-    <script>
-        // Loader
-        window.addEventListener("load", () => {
-            document.querySelector(".loader").style.display = "none";
-        });
-
-        // Navbar scroll
-        window.addEventListener("scroll", () => {
-            const header = document.getElementById("navbar");
-            if (window.scrollY > 80) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
-        });
-
-        // Animaciones con scroll (fade-in)
-        const fadeElements = document.querySelectorAll(".fade-in");
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.2 });
-        fadeElements.forEach(el => observer.observe(el));
-    </script>
-</body>
-
-</html>
+    </section>
+</main>
