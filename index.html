@@ -160,6 +160,35 @@
       z-index: 2000;
     }
 
+    /* ESTILOS AÑADIDOS PARA EL BOTÓN DE CIERRE DEL MENÚ */
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      background: #fff;
+    }
+
+    .menu-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .close-menu-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #111;
+    }
+
     .side-menu.active {
       left: 0;
     }
@@ -1081,7 +1110,7 @@
     <div class="header-main">
       <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
       <div class="logo-center">
-        <a href="index.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
+        <a href="galiz.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
       </div>
       <div class="cart-icon" id="cartIcon">
         <i class="fas fa-shopping-cart"></i>
@@ -1091,6 +1120,12 @@
   </header>
 
   <div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+      <h3>Menú</h3>
+      <button class="close-menu-btn" id="closeMenuBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
     <a href="ID0000.html">Novedades</a>
     <a href="ID0001.html">Remeras</a>
     <a href="ID0001.html">Buzos</a>
@@ -1527,6 +1562,7 @@
     const cartIcon = document.getElementById('cartIcon');
     const cartSidebar = document.getElementById('cartSidebar');
     const closeCartBtn = document.getElementById('closeCartBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn'); // ¡NUEVA VARIABLE!
     const menuOverlay = document.getElementById('menuOverlay');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
@@ -1577,6 +1613,9 @@
       menuOverlay.classList.toggle('active', sideMenu.classList.contains('active'));
       document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
     });
+    
+    // Cierra el menú con el botón X del menú (¡Añadido!)
+    closeMenuBtn.addEventListener('click', closeAllSidebars);
 
     // ----------------------------------------------------
     // 4. Funcionalidad del Carrito Lateral (Despliegue)
@@ -1627,19 +1666,19 @@
           total += itemTotal;
 
           const itemHTML = `
-                                    <div class="cart-item" data-index="${index}">
-                                        <div class="cart-item-img">
-                                            <img src="${item.imageSrc}" alt="${item.name}">
-                                        </div>
-                                        <div class="cart-item-info">
-                                            <p>${item.name}</p>
-                                            <span>$${formatPrice(item.price)} x ${item.quantity}</span>
-                                        </div>
-                                        <button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </div>
-                                `;
+											<div class="cart-item" data-index="${index}">
+												<div class="cart-item-img">
+													<img src="${item.imageSrc}" alt="${item.name}">
+												</div>
+												<div class="cart-item-info">
+													<p>${item.name}</p>
+													<span>$${formatPrice(item.price)} x ${item.quantity}</span>
+												</div>
+												<button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
+													<i class="fas fa-trash-alt"></i>
+												</button>
+											</div>
+										`;
           cartItemsContainer.innerHTML += itemHTML;
         });
 
@@ -1754,6 +1793,5 @@
     renderCart();
   </script>
 </body>
-
 
 </html>
