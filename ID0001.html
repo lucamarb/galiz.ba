@@ -10,8 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;900&family=Special+Elite&display=swap"
         rel="stylesheet">
     <style>
-        /* [ ... COPIA Y PEGA TODO EL CÓDIGO CSS DE LA RESPUESTA ANTERIOR AQUÍ ... ] */
-        /* Estilos omitidos por brevedad en esta respuesta, pero DEBEN estar aquí. */
+        /*
+         ====================================================
+         ||         ESTILOS GENERALES Y LAYOUT           ||
+         ====================================================
+         */
         body {
             margin: 0;
             font-family: "Roboto", Helvetica, sans-serif;
@@ -20,6 +23,7 @@
             overflow-x: hidden;
         }
 
+        /* LOADER */
         .loader {
             position: fixed;
             top: 0;
@@ -53,6 +57,12 @@
         main {
             padding-top: 105px;
         }
+
+        /*
+         ====================================================
+         ||          HEADER Y NAVEGACIÓN                   ||
+         ====================================================
+         */
 
         .announcement-bar {
             width: 100%;
@@ -210,6 +220,12 @@
             visibility: visible;
         }
 
+        /*
+         ====================================================
+         ||          ESTILOS DEL CARRITO LATERAL           ||
+         ====================================================
+         */
+
         .cart-icon {
             position: relative;
         }
@@ -330,6 +346,12 @@
             background-color: #333;
         }
 
+        /*
+         ====================================================
+         ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
+         ====================================================
+         */
+
         .cart-item {
             display: flex;
             align-items: center;
@@ -390,6 +412,12 @@
         .remove-item-btn:hover {
             color: #c00;
         }
+
+        /*
+         ====================================================
+         ||          CATÁLOGO DE PRODUCTOS                 ||
+         ====================================================
+         */
 
         .catalogo {
             padding: 40px 80px 100px;
@@ -613,6 +641,12 @@
             opacity: 1;
         }
 
+        /*
+         ====================================================
+         ||          FOOTER                                ||
+         ====================================================
+         */
+
         footer {
             background: #fff;
             color: #000;
@@ -744,6 +778,12 @@
             color: #666;
             margin-top: 5px;
         }
+
+        /*
+         ====================================================
+         ||          MEDIA QUERIES                         ||
+         ====================================================
+         */
 
         @media (max-width: 1200px) {
             .productos-grid {
@@ -1027,7 +1067,7 @@
                             </div>
                         </div>
                     </a>
-                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo">AGREGAR AL
+                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo 2">AGREGAR AL
                         CARRITO</button>
                 </div>
                 <div class="producto-item">
@@ -1054,7 +1094,7 @@
                             </div>
                         </div>
                     </a>
-                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo">AGREGAR AL
+                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo 3">AGREGAR AL
                         CARRITO</button>
                 </div>
                 <div class="producto-item">
@@ -1081,7 +1121,7 @@
                             </div>
                         </div>
                     </a>
-                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo">AGREGAR AL
+                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo 4">AGREGAR AL
                         CARRITO</button>
                 </div>
                 <div class="producto-item">
@@ -1108,7 +1148,7 @@
                             </div>
                         </div>
                     </a>
-                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo">AGREGAR AL
+                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo 5">AGREGAR AL
                         CARRITO</button>
                 </div>
                 <div class="producto-item">
@@ -1135,7 +1175,7 @@
                             </div>
                         </div>
                     </a>
-                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo">AGREGAR AL
+                    <button class="add-to-cart-btn" data-product-name="Remera Estampada Logo 6">AGREGAR AL
                         CARRITO</button>
                 </div>
             </div>
@@ -1143,11 +1183,47 @@
     </main>
 
     <footer>
+        <div class="footer-newsletter">
+            <h4 class="footer-title">SUSCRIBITE AL NEWSLETTER</h4>
+            <form action="#" method="post" class="newsletter-form">
+                <input type="email" name="email" placeholder="Ingresá tu mail" required>
+                <button type="submit" aria-label="Suscribirse"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 class="footer-title">AYUDA</h4>
+                <a href="#">PREGUNTAS FRECUENTES</a>
+                <a href="#">CAMBIOS Y DEVOLUCIONES</a>
+                <a href="#">ENVÍOS</a>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">GALIZ</h4>
+                <a href="#">STORES</a>
+                <a href="#">TÉRMINOS Y CONDICIONES</a>
+            </div>
+            <div class="footer-col contact-info">
+                <h4 class="footer-title">CONTACTO</h4>
+                <p>+54 9 11 2222 3333</p>
+                <p>ARGENTINA</p>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.75rem; color: #666;">
+            © 2025 Galiz.ba — Todos los derechos reservados.
+        </p>
+        <p class="wip">WIP – Work In Progress</p>
     </footer>
 
     <script>
-        // [ ... COPIA Y PEGA TODO EL CÓDIGO JAVASCRIPT DE LA RESPUESTA ANTERIOR AQUÍ ... ]
-        // Script completo de la respuesta anterior
+        // Declaración de variables clave
         const menuToggle = document.getElementById('menuToggle');
         const sideMenu = document.getElementById('sideMenu');
         const cartIcon = document.getElementById('cartIcon');
@@ -1161,12 +1237,18 @@
         const viewGrid3 = document.getElementById('viewGrid3');
         const viewGrid2 = document.getElementById('viewGrid2');
         const viewOptions = document.querySelectorAll('.view-options button');
+        
+        // Variables de Carrito (Estado global)
         let cart = [];
         const cartCounter = document.getElementById('cart-counter');
         const cartItemsContainer = document.getElementById('cartItems');
         const cartTotalDisplay = document.getElementById('cartTotal');
         const emptyMessage = document.getElementById('emptyMessage');
         const checkoutBtn = document.querySelector('.checkout-btn');
+
+        // ----------------------------------------------------
+        // 1. Funcionalidad del Loader (simulación)
+        // ----------------------------------------------------
         window.addEventListener('load', function () {
             const loader = document.querySelector('.loader');
             setTimeout(() => {
@@ -1174,6 +1256,10 @@
                 document.body.style.overflow = 'auto';
             }, 500);
         });
+
+        // ----------------------------------------------------
+        // 2. Funcionalidad de Toggle General (Menú y Carrito)
+        // ----------------------------------------------------
         function closeAllSidebars() {
             sideMenu.classList.remove('active');
             cartSidebar.classList.remove('active');
@@ -1181,6 +1267,10 @@
             document.body.style.overflow = 'auto';
         }
         menuOverlay.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 3. Funcionalidad del Menú Lateral
+        // ----------------------------------------------------
         menuToggle.addEventListener('click', function () {
             if (cartSidebar.classList.contains('active')) {
                 cartSidebar.classList.remove('active');
@@ -1190,6 +1280,10 @@
             document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
         });
         closeMenuBtn.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 4. Funcionalidad del Carrito Lateral (Despliegue)
+        // ----------------------------------------------------
         cartIcon.addEventListener('click', function () {
             if (sideMenu.classList.contains('active')) {
                 sideMenu.classList.remove('active');
@@ -1199,17 +1293,30 @@
             document.body.style.overflow = cartSidebar.classList.contains('active') ? 'hidden' : 'auto';
         });
         closeCartBtn.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 5. Funciones de Manejo de Precios y Carrito
+        // ----------------------------------------------------
+
+        // Parsea el precio: Ej. "$100.000" a 100000
         function parsePrice(priceText) {
             if (!priceText) return 0;
+            // Elimina $, puntos de mil, y reemplaza la coma decimal por punto
             const cleanText = priceText.replace('$', '').replace(/\./g, '').replace(',', '.');
             return parseFloat(cleanText);
         }
+
+        // Formatea el precio: Ej. 100000 a "100.000,00"
         function formatPrice(price) {
             return price.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
+
+        // Renderiza el contenido del carrito
         function renderCart() {
             cartItemsContainer.innerHTML = '';
             let total = 0;
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
             if (cart.length === 0) {
                 emptyMessage.style.display = 'block';
             } else {
@@ -1233,14 +1340,17 @@
                     `;
                     cartItemsContainer.innerHTML += itemHTML;
                 });
+                // Reasignar eventos a los nuevos botones de eliminar
                 document.querySelectorAll('.remove-item-btn').forEach(button => {
                     button.addEventListener('click', removeItem);
                 });
             }
-            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
             cartCounter.textContent = itemCount;
             cartTotalDisplay.textContent = formatPrice(total);
         }
+
+        // Agrega un producto al carrito
         function addToCart(product) {
             const existingItem = cart.find(item => item.id === product.id);
             if (existingItem) {
@@ -1253,39 +1363,63 @@
             }
             renderCart();
         }
+
+        // Elimina un producto del carrito
         function removeItem(event) {
             const index = event.currentTarget.getAttribute('data-index');
             cart.splice(index, 1);
             renderCart();
         }
+
+        // ----------------------------------------------------
+        // 6. Funcionalidad Agregar al Carrito (Evento de Botones)
+        // ----------------------------------------------------
         addToCartButtons.forEach(button => {
             button.addEventListener('click', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
+                
                 const itemElement = this.closest('.producto-item');
                 const name = this.getAttribute('data-product-name');
-                const newPriceText = itemElement.querySelector('.price-new').textContent;
-                const imageSrc = itemElement.querySelector('.producto-img .front').getAttribute('src');
+                const newPriceElement = itemElement.querySelector('.price-new');
+                const imageElement = itemElement.querySelector('.producto-img .front');
+                
+                // Validación básica de elementos
+                if (!newPriceElement || !imageElement) {
+                    console.error("No se encontraron los datos del producto.");
+                    return;
+                }
+
+                const newPriceText = newPriceElement.textContent;
+                const imageSrc = imageElement.getAttribute('src');
                 const price = parsePrice(newPriceText);
                 const id = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+
                 const newProduct = {
                     id: id,
                     name: name,
                     price: price,
                     imageSrc: imageSrc
                 };
+
                 addToCart(newProduct);
                 cartIcon.classList.add('animate');
+                
                 if (!cartSidebar.classList.contains('active')) {
                     cartSidebar.classList.add('active');
                     menuOverlay.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
+
                 setTimeout(() => {
                     cartIcon.classList.remove('animate');
                 }, 500);
             });
         });
+
+        // ----------------------------------------------------
+        // 7. Funcionalidad de Checkout y Vista de Grilla
+        // ----------------------------------------------------
         checkoutBtn.addEventListener('click', function (event) {
             event.preventDefault();
             if (cart.length === 0) {
@@ -1298,18 +1432,28 @@
                 renderCart();
             }
         });
+
         function changeGridView(columns) {
-            productosGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            if (productosGrid) {
+                 productosGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            }
             viewOptions.forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`viewGrid${columns}`).classList.add('active');
+            const targetButton = document.getElementById(`viewGrid${columns}`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
         }
+        
+        // Asignar eventos a los botones de vista
         if (viewGrid4) viewGrid4.addEventListener('click', () => changeGridView(4));
         if (viewGrid3) viewGrid3.addEventListener('click', () => changeGridView(3));
         if (viewGrid2) viewGrid2.addEventListener('click', () => changeGridView(2));
+        
+        // Inicializar el carrito y la vista al cargar la página
         renderCart();
     </script>
 </body>
 
-
 </html>
+
 
