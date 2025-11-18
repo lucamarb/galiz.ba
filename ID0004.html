@@ -1,65 +1,1318 @@
-<title>Pantalones | Galiz.BA</title>
+<!DOCTYPE html>
+<html lang="es">
 
-<main>
-    <section class="catalogo">
-        <h2>Pantalones</h2>
-        <div class="catalogo-header">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalones | Galiz.BA</title>
+    <link rel="icon" type="image/png" href="galiz\IMAGENES WEB\icon galiz.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700;900&family=Special+Elite&display=swap"
+        rel="stylesheet">
+    <style>
+        /*
+         ====================================================
+         ||         ESTILOS GENERALES Y LAYOUT           ||
+         ====================================================
+         */
+        body {
+            margin: 0;
+            font-family: "Roboto", Helvetica, sans-serif;
+            background-color: #fff;
+            color: #111;
+            overflow-x: hidden;
+        }
+
+        /* LOADER */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .logo-loader {
+            width: 120px;
+            height: 120px;
+            background: url('galiz/IMAGENES WEB/Logo negro.png') no-repeat center center/contain;
+            animation: fadeIn 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.3;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        main {
+            padding-top: 105px;
+        }
+
+        /*
+         ====================================================
+         ||          HEADER Y NAVEGACIÓN                   ||
+         ====================================================
+         */
+
+        .announcement-bar {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            z-index: 2000;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scroll 25s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1500;
+            background: transparent;
+            box-shadow: none;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header:hover {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header:hover .menu-toggle,
+        header:hover .cart-icon {
+            color: #000;
+        }
+
+        .header-main {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 30px;
+            position: relative;
+        }
+
+        .menu-toggle,
+        .cart-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .logo-center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .logo-center img {
+            width: 130px;
+            transition: 0.3s ease;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            padding-top: 70px;
+            transition: left 0.3s ease;
+            z-index: 2000;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        .menu-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #111;
+        }
+
+        .side-menu.active {
+            left: 0;
+        }
+
+        .side-menu a {
+            display: block;
+            padding: 15px 20px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #eee;
+            transition: 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .side-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1900;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .side-menu.active~.overlay,
+        .cart-sidebar.active~.overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /*
+         ====================================================
+         ||          ESTILOS DEL CARRITO LATERAL           ||
+         ====================================================
+         */
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-counter {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #000;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 50%;
+            padding: 2px 5px;
+            min-width: 18px;
+            text-align: center;
+            line-height: 1.2;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .cart-icon.animate .cart-counter {
+            animation: pulseCart 0.5s ease-out;
+        }
+
+        @keyframes pulseCart {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+                background-color: #6c0000;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .close-cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #111;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        .cart-footer {
+            padding: 15px 20px;
+            border-top: 2px solid #000;
+            text-align: center;
+        }
+
+        .cart-footer p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            display: block;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 0;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #333;
+        }
+
+        /*
+         ====================================================
+         ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
+         ====================================================
+         */
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            position: relative;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #111;
+            text-transform: uppercase;
+            line-height: 1.3;
+        }
+
+        .cart-item-info span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 5px;
+        }
+
+        .remove-item-btn:hover {
+            color: #c00;
+        }
+
+        /*
+         ====================================================
+         ||          CATÁLOGO DE PRODUCTOS                 ||
+         ====================================================
+         */
+
+        .catalogo {
+            padding: 40px 80px 100px;
+            text-align: center;
+        }
+
+        .catalogo h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            letter-spacing: 3px;
+            text-transform: none;
+            font-weight: 400;
+            color: #111;
+        }
+
+        .catalogo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .view-options button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: #888;
+            transition: color 0.2s;
+        }
+
+        .view-options button.active {
+            color: #000;
+        }
+
+        .filter-options button {
+            background: none;
+            border: 1px solid #000;
+            color: #000;
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px 30px;
+            text-align: left;
+        }
+
+        .producto-item {
+            background: #fff;
+            box-shadow: none;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 1px;
+        }
+
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            flex-grow: 1;
+            padding-bottom: 50px;
+        }
+
+        .producto-item:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .producto-img {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .producto-img img {
+            width: 100%;
+            display: block;
+            transition: opacity 0.4s ease;
+        }
+
+        .producto-img .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .producto-item:hover .producto-img .front {
+            opacity: 0;
+        }
+
+        .producto-item:hover .producto-img .back {
+            opacity: 1;
+        }
+
+        .producto-info {
+            padding: 15px 0 0;
+            text-align: left;
+        }
+
+        .producto-info h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 5px;
+            color: #111;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-pricing {
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #000;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .rating i {
+            color: #000;
+            font-size: 0.75rem;
+            margin-right: 2px;
+        }
+
+        .rating span {
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        .prices {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .price-old {
+            color: #666;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .price-new {
+            color: #000;
+            font-size: 1.05rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .payment-options {
+            text-align: left;
+            padding: 10px 0 20px;
+            border-top: none;
+        }
+
+        .transfer-price {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #000;
+            margin: 0;
+        }
+
+        .installments {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #333;
+            margin: 2px 0 0;
+        }
+
+        .available-colors {
+            display: none;
+        }
+
+        .add-to-cart-btn {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #000;
+            padding: 10px 0;
+            margin-top: 15px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            z-index: 10;
+        }
+
+        .producto-item:hover .add-to-cart-btn {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /*
+         ====================================================
+         ||          FOOTER                                ||
+         ====================================================
+         */
+
+        footer {
+            background: #fff;
+            color: #000;
+            padding: 60px 20px 30px;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-newsletter {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 150px;
+            margin-bottom: 25px;
+        }
+
+        .footer-title {
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #111;
+        }
+
+        .newsletter-form {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #111;
+            padding-bottom: 5px;
+        }
+
+        .newsletter-form input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            padding: 5px 0;
+            font-size: 1rem;
+            color: #111;
+            background: transparent;
+            text-align: center;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-form button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #111;
+            font-size: 1.2rem;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            transition: color 0.2s;
+            text-align: center;
+        }
+
+        .footer-col a:hover {
+            color: #000;
+        }
+
+        .footer-col .footer-title {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #000;
+            margin: 0;
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #666;
+        }
+
+        .wip {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /*
+         ====================================================
+         ||          MEDIA QUERIES                         ||
+         ====================================================
+         */
+
+        @media (max-width: 1200px) {
+            .productos-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .productos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                max-width: 100%;
+                padding: 0;
+            }
+
+            .footer-col {
+                text-align: center;
+                padding: 20px 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .footer-col:last-child {
+                border-bottom: none;
+            }
+
+            .footer-col .footer-title {
+                text-align: center;
+            }
+
+            .footer-col a,
+            .footer-col p {
+                text-align: center;
+            }
+
+            .footer-newsletter {
+                margin-bottom: 40px;
+            }
+
+            .catalogo {
+                padding: 40px 15px 80px;
+            }
+
+            .catalogo-header {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+
+            .filter-options {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .productos-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px 15px;
+            }
+
+            .side-menu {
+                width: 85%;
+                left: -85%;
+            }
+
+            .cart-sidebar {
+                width: 90%;
+                right: -90%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .productos-grid {
+                grid-template-columns: 1fr;
+                gap: 50px 0;
+            }
+
+            .catalogo {
+                padding: 40px 10px 80px;
+            }
+
+            .catalogo h2 {
+                margin-bottom: 40px;
+            }
+
+            .header-main {
+                padding: 12px 15px;
+            }
+
+            .producto-img {
+                margin-bottom: 0;
+            }
+
+            .product-link {
+                padding-bottom: 0;
+            }
+
+            .add-to-cart-btn {
+                position: static;
+                transform: translateY(0);
+                opacity: 1;
+                margin-top: 15px;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .side-menu {
+                width: 100%;
+                left: -100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">
+        <div class="logo-loader"></div>
+    </div>
+
+    <header id="main-header">
+        <div class="announcement-bar">
+            <div class="marquee-content">
+                <p>
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    6 CUOTAS SIN INTERÉS • 15% OFF CON TRANSFERENCIA • ENVÍO GRATIS A PARTIR $190.000
+                </p>
+            </div>
         </div>
+        <div class="header-main">
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div class="logo-center">
+                <a href="index.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
+            </div>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-counter" class="cart-counter">0</span>
+            </div>
+        </div>
+    </header>
 
-        <div class="productos-grid" id="productosGrid">
-            <div class="producto-item">
-                <a href="detalle-producto.html" class="product-link">
-                    <div class="producto-img">
-                        <img class="front" src="galiz/IMAGENES WEB/jean_slim_azul_frente.jpg"
-                            alt="Jean Slim Fit Azul - Frente">
-                        <img class="back" src="galiz/IMAGENES WEB/jean_slim_azul_atras.jpg"
-                            alt="Jean Slim Fit Azul - Atrás">
-                    </div>
-                    <div class="producto-info">
-                        <h3>JEAN SLIM FIT AZUL</h3>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="far fa-star"></i>
-                            <span>4.3 (7)</span>
-                        </div>
-                        <div class="prices">
-                            <p class="price-new">$79.990</p>
-                        </div>
-                        <div class="payment-options">
-                            <p class="transfer-price">O $67.991 CON TRANSFERENCIA</p>
-                            <span class="installments">6 cuotas sin interés de $13.331,67</span>
-                        </div>
-                    </div>
-                </a>
-                <button class="add-to-cart-btn" data-product-name="Jean Slim Fit Azul">AGREGAR AL CARRITO</button>
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>Menú</h3>
+            <button class="close-menu-btn" id="closeMenuBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <a href="ID0000.html">Novedades</a>
+        <a href="ID0001.html">Remeras</a>
+        <a href="ID0002.html">Buzos</a>
+        <a href="ID0003.html">Accesorios</a>
+        <a href="ID0004.html">Pantalones</a>
+        <a href="ID0005.html">Ventas al por Mayor</a>
+        <a href="ID0006.html">Contacto</a>
+    </div>
+
+    <div class="overlay" id="menuOverlay"></div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Carrito de Compras</h3>
+            <button class="close-cart-btn" id="closeCartBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-message" id="emptyMessage" style="display: block;">Tu carrito está vacío.</p>
+        </div>
+        <div class="cart-footer">
+            <p>Total: $<span id="cartTotal">0.00</span></p>
+            <a href="#" class="checkout-btn">Finalizar Compra</a>
+        </div>
+    </div>
+
+    <main>
+        <section class="catalogo">
+            <h2>Pantalones</h2>
+            <div class="catalogo-header">
+                <div class="view-options">
+                    <button id="viewGrid4" class="active" aria-label="Ver 4 Columnas">
+                        <i class="fas fa-grip"></i>
+                    </button>
+                    <button id="viewGrid3" aria-label="Ver 3 Columnas">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="viewGrid2" aria-label="Ver 2 Columnas">
+                        <i class="fas fa-columns"></i>
+                    </button>
+                </div>
+                <div class="filter-options">
+                    <button id="filterBtn">Filtrar <i class="fas fa-sliders-h"></i></button>
+                </div>
             </div>
 
-            <div class="producto-item">
-                <a href="detalle-producto.html" class="product-link">
-                    <div class="producto-img">
-                        <img class="front" src="galiz/IMAGENES WEB/pantalon_cargo_negro_frente.jpg"
-                            alt="Pantalón Cargo Negro - Frente">
-                        <img class="back" src="galiz/IMAGENES WEB/pantalon_cargo_negro_espalda.jpg"
-                            alt="Pantalón Cargo Negro - Espalda">
-                    </div>
-                    <div class="producto-info">
-                        <h3>PANTALÓN CARGO NEGRO</h3>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>5.0 (4)</span>
+            <div class="productos-grid" id="productosGrid">
+                <div class="producto-item">
+                    <a href="detalle-producto.html" class="product-link">
+                        <div class="producto-img">
+                            <img class="front" src="galiz/IMAGENES WEB/jean_slim_azul_frente.jpg"
+                                alt="Jean Slim Fit Azul - Frente">
+                            <img class="back" src="galiz/IMAGENES WEB/jean_slim_azul_atras.jpg"
+                                alt="Jean Slim Fit Azul - Atrás">
                         </div>
-                        <div class="prices">
-                            <p class="price-new">$89.990</p>
+                        <div class="producto-info">
+                            <h3>JEAN SLIM FIT AZUL</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span>4.3 (7)</span>
+                            </div>
+                            <div class="prices">
+                                <p class="price-new">$79.990</p>
+                            </div>
+                            <div class="payment-options">
+                                <p class="transfer-price">O $67.991 CON TRANSFERENCIA</p>
+                                <span class="installments">6 cuotas sin interés de $13.331,67</span>
+                            </div>
                         </div>
-                        <div class="payment-options">
-                            <p class="transfer-price">O $76.491 CON TRANSFERENCIA</p>
-                            <span class="installments">6 cuotas sin interés de $14.998,33</span>
+                    </a>
+                    <button class="add-to-cart-btn" data-product-name="Jean Slim Fit Azul">AGREGAR AL CARRITO</button>
+                </div>
+
+                <div class="producto-item">
+                    <a href="detalle-producto.html" class="product-link">
+                        <div class="producto-img">
+                            <img class="front" src="galiz/IMAGENES WEB/pantalon_cargo_negro_frente.jpg"
+                                alt="Pantalón Cargo Negro - Frente">
+                            <img class="back" src="galiz/IMAGENES WEB/pantalon_cargo_negro_espalda.jpg"
+                                alt="Pantalón Cargo Negro - Espalda">
                         </div>
-                    </div>
-                </a>
-                <button class="add-to-cart-btn" data-product-name="Pantalón Cargo Negro">AGREGAR AL CARRITO</button>
+                        <div class="producto-info">
+                            <h3>PANTALÓN CARGO NEGRO</h3>
+                            <div class="rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span>5.0 (4)</span>
+                            </div>
+                            <div class="prices">
+                                <p class="price-new">$89.990</p>
+                            </div>
+                            <div class="payment-options">
+                                <p class="transfer-price">O $76.491 CON TRANSFERENCIA</p>
+                                <span class="installments">6 cuotas sin interés de $14.998,33</span>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="add-to-cart-btn" data-product-name="Pantalón Cargo Negro">AGREGAR AL CARRITO</button>
+                </div>
+                </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-newsletter">
+            <h4 class="footer-title">SUSCRIBITE AL NEWSLETTER</h4>
+            <form action="#" method="post" class="newsletter-form">
+                <input type="email" name="email" placeholder="Ingresá tu mail" required>
+                <button type="submit" aria-label="Suscribirse"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 class="footer-title">AYUDA</h4>
+                <a href="#">PREGUNTAS FRECUENTES</a>
+                <a href="#">CAMBIOS Y DEVOLUCIONES</a>
+                <a href="#">ENVÍOS</a>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">GALIZ</h4>
+                <a href="#">STORES</a>
+                <a href="#">TÉRMINOS Y CONDICIONES</a>
+            </div>
+            <div class="footer-col contact-info">
+                <h4 class="footer-title">CONTACTO</h4>
+                <p>+54 9 11 2222 3333</p>
+                <p>ARGENTINA</p>
             </div>
         </div>
-    </section>
-</main>
+
+        <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.75rem; color: #666;">
+            © 2025 Galiz.ba — Todos los derechos reservados.
+        </p>
+        <p class="wip">WIP – Work In Progress</p>
+    </footer>
+
+    <script>
+        // Declaración de variables clave
+        const menuToggle = document.getElementById('menuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartSidebar = document.getElementById('cartSidebar');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        const productosGrid = document.getElementById('productosGrid');
+        const viewGrid4 = document.getElementById('viewGrid4');
+        const viewGrid3 = document.getElementById('viewGrid3');
+        const viewGrid2 = document.getElementById('viewGrid2');
+        const viewOptions = document.querySelectorAll('.view-options button');
+        
+        // Variables de Carrito (Estado global)
+        let cart = [];
+        const cartCounter = document.getElementById('cart-counter');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotalDisplay = document.getElementById('cartTotal');
+        const emptyMessage = document.getElementById('emptyMessage');
+        const checkoutBtn = document.querySelector('.checkout-btn');
+
+        // ----------------------------------------------------
+        // 1. Funcionalidad del Loader (simulación)
+        // ----------------------------------------------------
+        window.addEventListener('load', function () {
+            const loader = document.querySelector('.loader');
+            setTimeout(() => {
+                loader.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 500);
+        });
+
+        // ----------------------------------------------------
+        // 2. Funcionalidad de Toggle General (Menú y Carrito)
+        // ----------------------------------------------------
+        function closeAllSidebars() {
+            sideMenu.classList.remove('active');
+            cartSidebar.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        menuOverlay.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 3. Funcionalidad del Menú Lateral
+        // ----------------------------------------------------
+        menuToggle.addEventListener('click', function () {
+            if (cartSidebar.classList.contains('active')) {
+                cartSidebar.classList.remove('active');
+            }
+            sideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active', sideMenu.classList.contains('active'));
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        closeMenuBtn.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 4. Funcionalidad del Carrito Lateral (Despliegue)
+        // ----------------------------------------------------
+        cartIcon.addEventListener('click', function () {
+            if (sideMenu.classList.contains('active')) {
+                sideMenu.classList.remove('active');
+            }
+            cartSidebar.classList.toggle('active');
+            menuOverlay.classList.toggle('active', cartSidebar.classList.contains('active'));
+            document.body.style.overflow = cartSidebar.classList.contains('active') ? 'hidden' : 'auto';
+        });
+        closeCartBtn.addEventListener('click', closeAllSidebars);
+
+        // ----------------------------------------------------
+        // 5. Funciones de Manejo de Precios y Carrito
+        // ----------------------------------------------------
+
+        // Parsea el precio: Ej. "$100.000" a 100000
+        function parsePrice(priceText) {
+            if (!priceText) return 0;
+            const cleanText = priceText.replace('$', '').replace(/\./g, '').replace(',', '.');
+            return parseFloat(cleanText);
+        }
+
+        // Formatea el precio: Ej. 100000 a "100.000,00"
+        function formatPrice(price) {
+            return price.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Renderiza el contenido del carrito
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                emptyMessage.style.display = 'block';
+            } else {
+                emptyMessage.style.display = 'none';
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    const itemHTML = `
+                         <div class="cart-item" data-index="${index}">
+                            <div class="cart-item-img">
+                                <img src="${item.imageSrc}" alt="${item.name}">
+                            </div>
+                            <div class="cart-item-info">
+                                <p>${item.name}</p>
+                                <span>$${formatPrice(item.price)} x ${item.quantity}</span>
+                            </div>
+                            <button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.innerHTML += itemHTML;
+                });
+                // Reasignar eventos a los nuevos botones de eliminar
+                document.querySelectorAll('.remove-item-btn').forEach(button => {
+                    button.addEventListener('click', removeItem);
+                });
+            }
+            
+            cartCounter.textContent = itemCount;
+            cartTotalDisplay.textContent = formatPrice(total);
+        }
+
+        // Agrega un producto al carrito
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            renderCart();
+        }
+
+        // Elimina un producto del carrito
+        function removeItem(event) {
+            const index = event.currentTarget.getAttribute('data-index');
+            cart.splice(index, 1);
+            renderCart();
+        }
+
+        // ----------------------------------------------------
+        // 6. Funcionalidad Agregar al Carrito (Evento de Botones)
+        // ----------------------------------------------------
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                
+                const itemElement = this.closest('.producto-item');
+                const name = this.getAttribute('data-product-name');
+                const newPriceElement = itemElement.querySelector('.price-new');
+                const imageElement = itemElement.querySelector('.producto-img .front');
+                
+                if (!newPriceElement || !imageElement) {
+                    console.error("No se encontraron los datos del producto.");
+                    return;
+                }
+
+                const newPriceText = newPriceElement.textContent;
+                const imageSrc = imageElement.getAttribute('src');
+                const price = parsePrice(newPriceText);
+                const id = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+                const newProduct = {
+                    id: id,
+                    name: name,
+                    price: price,
+                    imageSrc: imageSrc
+                };
+
+                addToCart(newProduct);
+                cartIcon.classList.add('animate');
+                
+                if (!cartSidebar.classList.contains('active')) {
+                    cartSidebar.classList.add('active');
+                    menuOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                setTimeout(() => {
+                    cartIcon.classList.remove('animate');
+                }, 500);
+            });
+        });
+
+        // ----------------------------------------------------
+        // 7. Funcionalidad de Checkout y Vista de Grilla
+        // ----------------------------------------------------
+        checkoutBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (cart.length === 0) {
+                alert("¡Tu carrito está vacío! Agrega productos antes de finalizar la compra.");
+            } else {
+                const total = cartTotalDisplay.textContent;
+                alert(`¡Gracias por tu compra!\n\nSe ha procesado un total de $${total}.\n\n(En un sitio real, esto te llevaría a una página de pago/checkout.)`);
+                cart = [];
+                closeAllSidebars();
+                renderCart();
+            }
+        });
+
+        function changeGridView(columns) {
+            if (productosGrid) {
+                 productosGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+            }
+            viewOptions.forEach(btn => btn.classList.remove('active'));
+            const targetButton = document.getElementById(`viewGrid${columns}`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+        }
+        
+        // Asignar eventos a los botones de vista
+        if (viewGrid4) viewGrid4.addEventListener('click', () => changeGridView(4));
+        if (viewGrid3) viewGrid3.addEventListener('click', () => changeGridView(3));
+        if (viewGrid2) viewGrid2.addEventListener('click', () => changeGridView(2));
+        
+        // Inicializar el carrito y la vista al cargar la página
+        renderCart();
+    </script>
+</body>
+
+</html>
