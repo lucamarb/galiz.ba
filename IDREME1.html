@@ -148,9 +148,41 @@
             background: #fff;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             padding-top: 70px;
+            /* Espacio para el nuevo encabezado */
             transition: left 0.3s ease;
             z-index: 2000;
         }
+
+        /* ESTILOS AÑADIDOS PARA EL BOTÓN DE CIERRE DEL MENÚ */
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        .menu-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .close-menu-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #111;
+        }
+
+        /* FIN ESTILOS AÑADIDOS */
 
         .side-menu.active {
             left: 0;
@@ -943,7 +975,7 @@
         <div class="header-main">
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <div class="logo-center">
-                <a href="index.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
+                <a href="galiz.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
             </div>
             <div class="cart-icon" id="cartIcon">
                 <i class="fas fa-shopping-cart"></i>
@@ -953,6 +985,12 @@
     </header>
 
     <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>Menú</h3>
+            <button class="close-menu-btn" id="closeMenuBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         <a href="ID0000.html">Novedades</a>
         <a href="ID0001.html">Remeras</a>
         <a href="ID0001.html">Buzos</a>
@@ -1132,6 +1170,7 @@
             const cartIcon = document.getElementById('cartIcon');
             const cartSidebar = document.getElementById('cartSidebar');
             const closeCartBtn = document.getElementById('closeCartBtn');
+            const closeMenuBtn = document.getElementById('closeMenuBtn'); // ¡NUEVA VARIABLE!
 
             // --- CONSTANTES DE PRODUCTO ---
             const sizeButtons = document.querySelectorAll('.size-selector button');
@@ -1160,14 +1199,14 @@
             let cart = [];
             // Obtener el precio actual de la remera
             let currentPriceText = document.querySelector('.current-price').textContent.replace('$', '').replace(/\./g, '');
-            let currentPrice = parseFloat(currentPriceText);
+            let currentPrice = parsePrice(currentPriceText);
 
 
             // ===============================================
             // ||             1. FUNCIONES BASE               ||
             // ===============================================
 
-            // Abrir y cerrar Menú
+            // Abrir y cerrar Menú y Carrito
             function closeAllSidebars() {
                 sideMenu.classList.remove('active');
                 cartSidebar.classList.remove('active');
@@ -1181,6 +1220,9 @@
                 menuOverlay.style.opacity = '1';
                 menuOverlay.style.visibility = 'visible';
             });
+
+            // Listener para el nuevo botón de cierre del menú (¡Añadido!)
+            closeMenuBtn.addEventListener('click', closeAllSidebars);
 
             // Abrir y cerrar Carrito
             cartIcon.addEventListener('click', () => {
@@ -1224,6 +1266,7 @@
                     const newColor = option.dataset.color;
                     selectedColorSpan.textContent = newColor;
 
+                    // Busca la primera miniatura que coincida con el nuevo color para la imagen principal
                     const newThumb = document.querySelector(`.thumbnail[data-color="${newColor}"]`);
                     if (newThumb) {
                         mainImage.src = newThumb.querySelector('img').src;
@@ -1328,6 +1371,7 @@
             // Función auxiliar para parsear el precio (Ej. "$10.000,00" a 10000)
             function parsePrice(priceText) {
                 if (!priceText) return 0;
+                // Asumiendo que el separador de miles es '.' y el decimal es ','
                 return parseFloat(priceText.replace('$', '').replace(/\./g, '').replace(',', '.'));
             }
 
@@ -1392,6 +1436,12 @@
                 const price = currentPrice;
                 const imageSrc = mainImage.src;
 
+                // Validación simple de opciones seleccionadas
+                if (!size || !color || quantity < 1) {
+                    alert("Por favor, selecciona un talle, un color y una cantidad válida.");
+                    return;
+                }
+
                 const newItem = {
                     name,
                     size,
@@ -1422,6 +1472,7 @@
                 menuOverlay.style.opacity = '1';
                 menuOverlay.style.visibility = 'visible';
 
+                // Reiniciar la cantidad después de agregar
                 quantityInput.value = 1;
             });
 
@@ -1430,6 +1481,5 @@
         });
     </script>
 </body>
-
 
 </html>
