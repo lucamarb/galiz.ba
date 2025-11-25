@@ -12,7 +12,7 @@
   <style>
     /*
         ====================================================
-        ||          ESTILOS GENERALES Y LAYOUT          ||
+        ||          ESTILOS GENERALES Y LAYOUT          ||
         ====================================================
         */
     body {
@@ -62,7 +62,7 @@
 
     /*
         ====================================================
-        ||          HEADER Y NAVEGACIÓN                   ||
+        ||          HEADER Y NAVEGACIÓN                   ||
         ====================================================
         */
 
@@ -114,7 +114,8 @@
     }
 
     header:hover .menu-toggle,
-    header:hover .cart-icon {
+    header:hover .cart-icon,
+    header:hover .user-icon {
       color: #000;
     }
 
@@ -127,7 +128,8 @@
     }
 
     .menu-toggle,
-    .cart-icon {
+    .cart-icon,
+    .user-icon {
       font-size: 1.5rem;
       cursor: pointer;
       color: #000;
@@ -231,7 +233,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DEL CARRITO LATERAL           ||
+        ||          ESTILOS DEL CARRITO LATERAL           ||
         ====================================================
         */
 
@@ -362,7 +364,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
+        ||          ESTILOS DE ÍTEMS DEL CARRITO          ||
         ====================================================
         */
 
@@ -430,7 +432,7 @@
 
     /*
         ====================================================
-        ||           SECCIONES DE CONTENIDO               ||
+        ||          SECCIONES DE CONTENIDO                ||
         ====================================================
         */
 
@@ -670,7 +672,7 @@
 
     /*
         ====================================================
-        ||          TARJETA DE PRODUCTO DETALLADA       ||
+        ||          TARJETA DE PRODUCTO DETALLADA         ||
         ====================================================
         */
 
@@ -768,7 +770,7 @@
 
     /*
         ====================================================
-        ||          ESTILOS DEL BOTÓN AGREGAR CARRITO     ||
+        ||          ESTILOS DEL BOTÓN AGREGAR CARRITO     ||
         ====================================================
         */
 
@@ -802,7 +804,7 @@
 
     /*
         ====================================================
-        ||                FOOTER (CENTRALIZADO)            ||
+        ||          FOOTER (CENTRALIZADO)                 ||
         ====================================================
         */
     footer {
@@ -946,7 +948,178 @@
 
     /*
         ====================================================
-        ||               MEDIA QUERIES (ADAPTADO)         ||
+        ||          ESTILOS DE INICIO DE SESIÓN           ||
+        ====================================================
+        */
+
+    /* Estilo del Nuevo Icono de Usuario */
+    .user-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #000;
+      transition: color 0.3s ease;
+      /* Asegura que no se mueva el carrito cuando el contador se anima */
+      position: relative;
+    }
+
+    .user-icon:hover {
+      color: #333;
+    }
+
+    /* Modal (Fondo Oscuro) */
+    .login-modal {
+      position: fixed;
+      z-index: 3000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      /* Oculto por defecto */
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contenido del Modal (Formulario) */
+    .login-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      border-radius: 5px;
+      animation: fadeInModal 0.3s;
+    }
+
+    @keyframes fadeInModal {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-content h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      font-family: 'Special Elite', cursive;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      background-color: #000;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #333;
+    }
+
+    .close-modal-btn {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+
+    .close-modal-btn:hover,
+    .close-modal-btn:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .login-message {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .login-message.success {
+      color: green;
+    }
+
+    .login-message.error {
+      color: red;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .register-link a {
+      color: #000;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* Nuevo estilo para el enlace de "Olvidé Contraseña" */
+    .forgot-password-link {
+      display: block;
+      text-align: right;
+      font-size: 0.8rem;
+      color: #333;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .forgot-password-link:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+
+    /*
+        ====================================================
+        ||           MEDIA QUERIES (ADAPTADO)             ||
         ====================================================
         */
     @media (max-width: 1200px) {
@@ -1085,6 +1258,11 @@
         /* El menú ocupa todo el ancho */
         left: -100%;
       }
+
+      .login-content {
+        margin-top: 50%;
+        /* Ajuste para que se vea mejor en móviles */
+      }
     }
   </style>
 </head>
@@ -1112,9 +1290,14 @@
       <div class="logo-center">
         <a href="index.html"><img src="galiz/IMAGENES WEB/Logo negro.png" alt="Logo Galiz"></a>
       </div>
-      <div class="cart-icon" id="cartIcon">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cart-counter" class="cart-counter">0</span>
+      <div style="display: flex; gap: 20px;">
+        <div class="user-icon" id="userIcon">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="cart-icon" id="cartIcon">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cart-counter" class="cart-counter">0</span>
+        </div>
       </div>
     </div>
   </header>
@@ -1153,6 +1336,26 @@
     </div>
   </div>
 
+  <div class="login-modal" id="loginModal">
+    <div class="login-content">
+      <span class="close-modal-btn" id="closeModalBtn">&times;</span>
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email:</label>
+          <input type="email" id="loginEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Contraseña:</label>
+          <input type="password" id="loginPassword" name="password" required>
+        </div>
+        <a href="#" id="forgotPasswordLink" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
+        <button type="submit" class="submit-btn">Ingresar</button>
+        <p id="loginMessage" class="login-message"></p>
+      </form>
+      <p class="register-link">¿No tienes cuenta? <a href="#">Regístrate</a></p>
+    </div>
+  </div>
   <main>
     <section class="carrousel">
       <img src="galiz\IMAGENES WEB\Gemini_Generated_Image_d0wmiyd0wmiyd0wm.png">
@@ -1561,39 +1764,57 @@
     const cartIcon = document.getElementById('cartIcon');
     const cartSidebar = document.getElementById('cartSidebar');
     const closeCartBtn = document.getElementById('closeCartBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn'); // ¡NUEVA VARIABLE!
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
 
-    // NUEVAS VARIABLES GLOBALES PARA EL CARRITO
-    let cart = []; // Array para almacenar los objetos de producto en el carrito
+    // VARIABLES GLOBALES PARA EL CARRITO
+    let cart = [];
     const cartCounter = document.getElementById('cart-counter');
     const cartItemsContainer = document.getElementById('cartItems');
     const cartTotalDisplay = document.getElementById('cartTotal');
     const emptyMessage = document.getElementById('emptyMessage');
     const checkoutBtn = document.querySelector('.checkout-btn');
 
+    // NUEVAS VARIABLES PARA EL LOGIN Y CAMBIO DE CONTRASEÑA
+    const userIcon = document.getElementById('userIcon');
+    const loginModal = document.getElementById('loginModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const loginForm = document.getElementById('loginForm');
+    const loginMessage = document.getElementById('loginMessage');
+    const loginEmail = document.getElementById('loginEmail');
+    const loginPassword = document.getElementById('loginPassword');
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+    // Usuario simulado para la prueba:
+    const VALID_EMAIL = "test@galiz.ba";
+    const VALID_PASSWORD = "password123";
+
     // ----------------------------------------------------
     // 1. Funcionalidad del Loader (simulación)
     // ----------------------------------------------------
     window.addEventListener('load', function () {
       const loader = document.querySelector('.loader');
-      // Simula un tiempo de carga mínimo para que se vea el logo animado
       setTimeout(() => {
         loader.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Permitir scroll después de cargar
-      }, 500); // 0.5 segundo de simulación
+        document.body.style.overflow = 'auto';
+      }, 500);
     });
 
     // ----------------------------------------------------
-    // 2. Funcionalidad de Toggle General (Menú y Carrito)
+    // 2. Funcionalidad de Toggle General (Menú, Carrito y Modal)
     // ----------------------------------------------------
 
-    // Función para cerrar cualquier sidebar abierta
+    // Función para cerrar cualquier sidebar abierta y el modal de login
     function closeAllSidebars() {
       sideMenu.classList.remove('active');
       cartSidebar.classList.remove('active');
       menuOverlay.classList.remove('active');
+
+      if (loginModal.style.display === 'flex') {
+        loginModal.style.display = 'none';
+      }
+
       document.body.style.overflow = 'auto';
     }
 
@@ -1604,33 +1825,109 @@
     // 3. Funcionalidad del Menú Lateral
     // ----------------------------------------------------
     menuToggle.addEventListener('click', function () {
-      // Si el carrito está abierto, lo cerramos primero
-      if (cartSidebar.classList.contains('active')) {
-        cartSidebar.classList.remove('active');
-      }
-      sideMenu.classList.toggle('active');
-      menuOverlay.classList.toggle('active', sideMenu.classList.contains('active'));
-      document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : 'auto';
+      closeAllSidebars();
+      sideMenu.classList.add('active');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
-    
-    // Cierra el menú con el botón X del menú (¡Añadido!)
+
     closeMenuBtn.addEventListener('click', closeAllSidebars);
 
     // ----------------------------------------------------
     // 4. Funcionalidad del Carrito Lateral (Despliegue)
     // ----------------------------------------------------
     cartIcon.addEventListener('click', function () {
-      // Si el menú está abierto, lo cerramos primero
-      if (sideMenu.classList.contains('active')) {
-        sideMenu.classList.remove('active');
-      }
-      cartSidebar.classList.toggle('active');
-      menuOverlay.classList.toggle('active', cartSidebar.classList.contains('active'));
-      document.body.style.overflow = cartSidebar.classList.contains('active') ? 'hidden' : 'auto';
+      closeAllSidebars();
+      cartSidebar.classList.add('active');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
 
-    // Cierra el carrito con el botón X
     closeCartBtn.addEventListener('click', closeAllSidebars);
+
+    // ----------------------------------------------------
+    // 5. Funcionalidad del Modal de Login
+    // ----------------------------------------------------
+    userIcon.addEventListener('click', function () {
+      closeAllSidebars();
+      loginModal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      // Asegura que el formulario esté visible y limpio al abrir
+      loginMessage.textContent = '';
+      loginForm.style.display = 'block';
+      loginEmail.value = '';
+      loginPassword.value = '';
+    });
+
+    function closeLoginModal() {
+      loginModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    closeModalBtn.addEventListener('click', closeLoginModal);
+
+    window.addEventListener('click', function (event) {
+      if (event.target === loginModal) {
+        closeLoginModal();
+      }
+    });
+
+    // ----------------------------------------------------
+    // 6. Lógica de Simulación de Inicio de Sesión
+    // ----------------------------------------------------
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const email = loginEmail.value;
+      const password = loginPassword.value;
+
+      loginMessage.classList.remove('success', 'error');
+
+      if (email === VALID_EMAIL && password === VALID_PASSWORD) {
+        loginMessage.textContent = "✅ ¡Inicio de sesión exitoso!";
+        loginMessage.classList.add('success');
+
+        setTimeout(() => {
+          closeLoginModal();
+          alert(`Bienvenido/a, ${email}!`);
+        }, 1500);
+
+      } else {
+        loginMessage.textContent = "❌ Email o contraseña incorrectos. Intenta con test@galiz.ba y password123.";
+        loginMessage.classList.add('error');
+      }
+    });
+
+    // ----------------------------------------------------
+    // 7. Lógica de Simulación de CAMBIO DE CONTRASEÑA
+    // ----------------------------------------------------
+    forgotPasswordLink.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      // 1. Ocultar el formulario de Login y mostrar un mensaje
+      loginForm.style.display = 'none';
+
+      loginMessage.classList.remove('success', 'error');
+      loginMessage.textContent = '';
+
+      // 2. Simular el envío del email de restablecimiento
+      alert(
+        "En un sitio terminado, ahora te pediríamos tu email para mandarte link de restablecimiento. Esto es una demostracion y una prueba xd"
+      );
+
+      const resetMessage =
+        "Se ha enviado un enlace de restablecimiento a tu correo electrónico. Por favor, revisa tu bandeja de entrada.";
+      loginMessage.textContent = resetMessage;
+      loginMessage.classList.add('success');
+
+      // 3. Volver a mostrar el formulario de login después de 3 segundos
+      setTimeout(() => {
+        loginMessage.textContent = '';
+        loginMessage.classList.remove('success');
+        loginForm.style.display = 'block';
+      }, 3000);
+    });
 
 
     // ----------------------------------------------------
@@ -1640,20 +1937,17 @@
     // Función auxiliar para parsear el precio (Ej. "$10.000,00" a 10000)
     function parsePrice(priceText) {
       if (!priceText) return 0;
-      // Elimina el símbolo de dólar, el punto de mil y reemplaza la coma decimal por un punto
       return parseFloat(priceText.replace('$', '').replace(/\./g, '').replace(',', '.'));
     }
 
     // Función para formatear el precio a la vista (X.XXX,XX)
     function formatPrice(price) {
-      // Convierte a string con dos decimales y usa una expresión regular para añadir el punto de miles.
-      return price.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return price.toFixed(2).replace('.', 'TEMP').replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace('TEMP', ',');
     }
 
 
-    // 1. Renderiza el contenido del carrito en el sidebar
     function renderCart() {
-      cartItemsContainer.innerHTML = ''; // Limpiar contenido existente
+      cartItemsContainer.innerHTML = '';
       let total = 0;
 
       if (cart.length === 0) {
@@ -1665,38 +1959,33 @@
           total += itemTotal;
 
           const itemHTML = `
-											<div class="cart-item" data-index="${index}">
-												<div class="cart-item-img">
-													<img src="${item.imageSrc}" alt="${item.name}">
-												</div>
-												<div class="cart-item-info">
-													<p>${item.name}</p>
-													<span>$${formatPrice(item.price)} x ${item.quantity}</span>
-												</div>
-												<button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
-													<i class="fas fa-trash-alt"></i>
-												</button>
-											</div>
-										`;
+							<div class="cart-item" data-index="${index}">
+								<div class="cart-item-img">
+									<img src="${item.imageSrc}" alt="${item.name}">
+								</div>
+								<div class="cart-item-info">
+									<p>${item.name}</p>
+									<span>$${formatPrice(item.price)} x ${item.quantity}</span>
+								</div>
+								<button class="remove-item-btn" data-index="${index}" aria-label="Eliminar producto">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</div>
+						`;
           cartItemsContainer.innerHTML += itemHTML;
         });
 
-        // Añadir escuchadores de eventos para los botones de eliminar DINÁMICOS
         document.querySelectorAll('.remove-item-btn').forEach(button => {
           button.addEventListener('click', removeItem);
         });
       }
 
-      // Actualizar el contador global y el total
       const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
       cartCounter.textContent = itemCount;
-
       cartTotalDisplay.textContent = formatPrice(total);
     }
 
-    // 2. Agrega un producto al carrito
     function addToCart(product) {
-      // Intenta encontrar un ítem que coincida por ID
       const existingItem = cart.find(item => item.id === product.id);
 
       if (existingItem) {
@@ -1704,41 +1993,34 @@
       } else {
         cart.push({
           ...product,
-          quantity: 1 // Siempre agregamos 1 unidad por defecto desde la grilla
+          quantity: 1
         });
       }
 
       renderCart();
     }
 
-    // 3. Elimina un producto del carrito
     function removeItem(event) {
       const index = event.currentTarget.getAttribute('data-index');
-
-      // Eliminar el ítem del array
       cart.splice(index, 1);
-
-      // Renderizar el carrito de nuevo para actualizar la vista y el contador
       renderCart();
     }
 
 
     // ----------------------------------------------------
-    // 5. Funcionalidad Agregar al Carrito (Evento de Botones)
+    // 8. Funcionalidad Agregar al Carrito (Evento de Botones)
     // ----------------------------------------------------
     addToCartButtons.forEach(button => {
       button.addEventListener('click', function (event) {
         event.preventDefault();
-        event.stopPropagation(); // ¡CLAVE! Previene que el clic vaya al enlace principal <a>
+        event.stopPropagation();
 
-        // Obtener info del producto desde la tarjeta
         const itemElement = this.closest('.producto-item');
         const name = this.getAttribute('data-product-name');
         const newPriceText = itemElement.querySelector('.price-new').textContent;
         const imageSrc = itemElement.querySelector('.producto-img .front').getAttribute('src');
         const price = parsePrice(newPriceText);
 
-        // Asignar un ID simple
         const id = name.toLowerCase().replace(/[^a-z0-9]/g, '');
 
         const newProduct = {
@@ -1748,20 +2030,16 @@
           imageSrc: imageSrc
         };
 
-        // Agregar el producto a nuestro array 'cart'
         addToCart(newProduct);
-
-        // Ejecutar la animación del contador
         cartIcon.classList.add('animate');
 
-        // Abrir el carrito lateral si está cerrado
         if (!cartSidebar.classList.contains('active')) {
+          closeAllSidebars();
           cartSidebar.classList.add('active');
           menuOverlay.classList.add('active');
           document.body.style.overflow = 'hidden';
         }
 
-        // Limpiar la animación después de que termine
         setTimeout(() => {
           cartIcon.classList.remove('animate');
         }, 500);
@@ -1769,7 +2047,7 @@
     });
 
     // ----------------------------------------------------
-    // 6. Funcionalidad del Botón Finalizar Compra
+    // 9. Funcionalidad del Botón Finalizar Compra
     // ----------------------------------------------------
     checkoutBtn.addEventListener('click', function (event) {
       event.preventDefault();
@@ -1777,11 +2055,11 @@
       if (cart.length === 0) {
         alert("¡Tu carrito está vacío! Agrega productos antes de finalizar la compra.");
       } else {
-        // Simulación de la compra
         const total = cartTotalDisplay.textContent;
-        alert(`¡Gracias por tu compra!\n\nSe ha procesado un total de $${total}.\n\n(En un sitio real, esto te llevaría a una página de pago/checkout.)`);
+        alert(
+          `¡Gracias por tu compra!\n\nSe ha procesado un total de $${total}.\n\n(En un sitio real, esto te llevaría a una página de pago/checkout.)`
+        );
 
-        // Simular vaciado del carrito después de la compra
         cart = [];
         closeAllSidebars();
         renderCart();
@@ -1795,7 +2073,3 @@
 
 
 </html>
-
-
-
-
